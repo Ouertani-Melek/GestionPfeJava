@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane fx:id="scrollin" prefHeight="650.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.RemplirCvController">
+   <content>
+      <AnchorPane id="AnchorPane" fx:id="remplir" prefHeight="650.0" prefWidth="820.0" style="-fx-background-color: #fff;" styleClass="mainFxmlClass">
+          <stylesheets>
+              <URL value="@remplircv.css" />
+          </stylesheets>
+         <children>
+            <ImageView fitHeight="1150.0" fitWidth="820.0" opacity="0.76" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/backgrounds/cource-info_1.jpg" />
+               </image>
+            </ImageView>
+            <Text fill="#da5436" layoutX="219.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remplissage de Votre CV" textAlignment="CENTER" underline="true" wrappingWidth="362.13671875" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="218.86328125">
+               <font>
+                  <Font name="Montserrat-Bold" size="26.0" />
+               </font>
+            </Text>
+            <ScrollPane layoutX="109.0" layoutY="201.0" prefHeight="148.0" prefWidth="626.0">
+               <content>
+                  <AnchorPane fx:id="formationFields" prefHeight="114.0" prefWidth="624.0" />
+               </content>
+            </ScrollPane>
+            <Text fill="#da0d0d" layoutX="26.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Formations :" wrappingWidth="134.13671875">
+               <font>
+                  <Font name="Montserrat-Bold" size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#da0d0d" layoutX="23.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Langues :" wrappingWidth="134.13671875">
+               <font>
+                  <Font name="Montserrat-Bold" size="17.0" />
+               </font>
+            </Text>
+            <JFXComboBox fx:id="niveau" focusColor="#9eca51" labelFloat="true" layoutX="428.0" layoutY="360.0" prefHeight="35.0" prefWidth="219.0" promptText="Niveau" style="-fx-background-color: #ffff;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXComboBox>
+            <Text fill="#da0d0d" layoutX="14.0" layoutY="557.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Languages maitrisés:" wrappingWidth="211.13671875">
+               <font>
+                  <Font name="Montserrat-Bold" size="17.0" />
+               </font>
+            </Text>
+            <ScrollPane layoutX="102.0" layoutY="414.0" prefHeight="120.0" prefWidth="634.0">
+               <content>
+                  <AnchorPane fx:id="langueFields" prefHeight="111.0" prefWidth="631.0" />
+               </content>
+            </ScrollPane>
+            <JFXTextField fx:id="tech" focusColor="#9eca51" labelFloat="true" layoutX="120.0" layoutY="577.0" prefHeight="29.0" prefWidth="256.0" promptText="languages" style="-fx-background-color: #ffff;" unFocusColor="WHITE" />
+            <JFXComboBox fx:id="level" focusColor="#9eca51" labelFloat="true" layoutX="442.0" layoutY="575.0" prefHeight="34.0" prefWidth="223.0" promptText="Estimation niveau" style="-fx-background-color: #ffff;" />
+            <ScrollPane layoutX="101.0" layoutY="626.0" prefHeight="141.0" prefWidth="636.0">
+               <content>
+                  <AnchorPane fx:id="techFields" prefHeight="137.0" prefWidth="634.0" />
+               </content>
+            </ScrollPane>
+            <Text fill="#da0d0d" layoutX="26.0" layoutY="818.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Centres d'interets :" wrappingWidth="254.13671875">
+               <font>
+                  <Font name="Montserrat-Bold" size="17.0" />
+               </font>
+            </Text>
+            <JFXComboBox fx:id="centres" focusColor="#9eca51" labelFloat="true" layoutX="128.0" layoutY="850.0" prefHeight="40.0" prefWidth="285.0" promptText="Centres d'interets" style="-fx-background-color: #ffff;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXComboBox>
+            <ScrollPane layoutX="111.0" layoutY="911.0" prefHeight="128.0" prefWidth="636.0">
+               <content>
+                  <AnchorPane fx:id="centresFields" prefHeight="123.0" prefWidth="634.0" style="-fx-background-color: #0000;" />
+               </content>
+            </ScrollPane>
+            <JFXComboBox fx:id="langue" focusColor="#9eca51" labelFloat="true" layoutX="128.0" layoutY="356.0" prefHeight="39.0" prefWidth="228.0" promptText="langue" style="-fx-background-color: #ffff;" />
+            <StackPane layoutX="491.0" layoutY="175.0" />
+            <StackPane layoutX="141.0" layoutY="175.0" />
+            <Label fx:id="wrongInput" layoutX="264.0" layoutY="69.0" prefHeight="21.0" prefWidth="291.0" textAlignment="CENTER" textFill="#d31919" />
+            <ImageView fitHeight="29.0" fitWidth="33.0" layoutX="699.0" layoutY="850.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/plus.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+              
+                  </ImageView>
+            <ImageView fitHeight="29.0" fitWidth="33.0" layoutX="699.0" layoutY="577.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/plus.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               
+                  </ImageView>
+            <ImageView fitHeight="29.0" fitWidth="33.0" layoutX="699.0" layoutY="369.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/plus.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               
+                  </ImageView>
+            <JFXTextField fx:id="formation" focusColor="#9eca51" labelFloat="true" layoutX="112.0" layoutY="137.0" prefHeight="41.0" prefWidth="263.0" promptText="formation" style="-fx-background-color: #ffff;" />
+            <JFXDatePicker fx:id="dateFormation" defaultColor="#9eca51" editable="false" layoutX="438.0" layoutY="136.0" prefHeight="40.0" prefWidth="231.0" promptText="Date obtenation de diplome" style="-fx-background-color: #ffff;" />
+            <ImageView fitHeight="29.0" fitWidth="33.0" layoutX="698.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/plus.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+              
+                  </ImageView>
+            <JFXButton fx:id="btnLangue" ellipsisString="" layoutX="694.0" layoutY="365.0" prefHeight="37.0" prefWidth="39.0" ripplerFill="#9eca51" textOverrun="CENTER_ELLIPSIS" />
+            <JFXButton fx:id="plus" ellipsisString="" layoutX="703.0" layoutY="140.0" prefHeight="37.0" prefWidth="21.0" ripplerFill="#9eca51" textOverrun="CENTER_ELLIPSIS" />
+            <JFXButton fx:id="btnTech" ellipsisString="" layoutX="703.0" layoutY="573.0" prefHeight="37.0" prefWidth="21.0" ripplerFill="#9eca51" textOverrun="CENTER_ELLIPSIS" />
+            <JFXButton fx:id="btnCentres" ellipsisString="" layoutX="699.0" layoutY="846.0" prefHeight="37.0" prefWidth="31.0" ripplerFill="#9eca51" textOverrun="CENTER_ELLIPSIS" />
+            <JFXButton fx:id="confirmer" buttonType="RAISED" graphicTextGap="10.0" layoutX="366.0" layoutY="1058.0" onAction="#CreerCVAction" prefHeight="50.0" prefWidth="106.0" ripplerFill="#9eca51" style="-fx-background-color: #5e8615;" text="Confirmer" textFill="WHITE">
+               <font>
+                  <Font name="Montserrat-Bold" size="13.0" />
+               </font>
+               
+            </JFXButton>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </AnchorPane>
+   </content>
+</ScrollPane>

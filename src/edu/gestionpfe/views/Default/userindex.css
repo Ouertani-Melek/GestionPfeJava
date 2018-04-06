@@ -4,4 +4,12 @@
 
 .mainFxmlClass {
 
+
+
+}
+.jfx-hamburger{
+    -fx-background-color: greenyellow;
+}
+.jfx-hamburger StackPane  {
+	-fx-background-color: #9eca51;
 }

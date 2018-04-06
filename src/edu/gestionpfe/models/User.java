@@ -32,6 +32,15 @@ public class User {
     private String rue;
     private String codePostal;
     private int numTel;
+    private boolean confirmer;
+
+    public boolean isConfirmer() {
+        return confirmer;
+    }
+
+    public void setConfirmer(boolean confirmer) {
+        this.confirmer = confirmer;
+    }
 
     public String getUsername() {
         return username;
@@ -149,8 +158,7 @@ public class User {
         return numTel;
     }
 
-    public void setNumTel(int numTel) 
-    {
+    public void setNumTel(int numTel) {
         this.numTel = numTel;
     }
 
@@ -159,6 +167,4 @@ public class User {
         return "User{" + "username=" + username + ", id=" + id + ", email=" + email + ", enabled=" + enabled + ", password=" + password + ", lastLogin=" + lastLogin + ", roles=" + roles + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", ville=" + ville + ", image=" + image + ", rue=" + rue + ", codePostal=" + codePostal + ", numTel=" + numTel + '}';
     }
 
-   
 }
-

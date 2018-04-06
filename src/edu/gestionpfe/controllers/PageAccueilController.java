@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import java.io.IOException;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -38,8 +39,8 @@ public class PageAccueilController implements Initializable {
         root = FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/PageConnection.fxml"));
         stage.setScene(new Scene(root));
         stage.setTitle("Se connecter");
-       
-       // stage.initModality(Modality.WINDOW_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
+        // stage.initModality(Modality.WINDOW_MODAL);
         // stage.initOwner(
         //    ((Node) e.getSource()).getScene().getWindow());
         Stage currentstage = (Stage) connecter.getScene().getWindow();

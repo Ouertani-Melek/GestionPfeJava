@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="myAnchorPane" prefHeight="400.0" prefWidth="700.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.RegistrationController">
+    <stylesheets>
+        <URL value="@pageregister.css" />
+    </stylesheets>
+   <children>
+      <Pane prefHeight="400.0" prefWidth="113.0" style="-fx-background-color: #00c853;">
+         <children>
+            <ImageView fx:id="retour" fitHeight="43.0" fitWidth="41.0" layoutX="30.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/left.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+      <JFXTextField fx:id="username" layoutX="130.0" layoutY="80.0" maxWidth="212.0" minWidth="212.0" prefHeight="30.0" prefWidth="212.0" promptText="Username" />
+      <JFXTextField fx:id="numTel" layoutX="130.0" layoutY="130.0" maxWidth="212.0" minWidth="212.0" prefHeight="30.0" prefWidth="212.0" promptText="Numéro de téléphone" />
+      <JFXTextField fx:id="ville" layoutX="130.0" layoutY="180.0" maxWidth="212.0" minWidth="212.0" prefHeight="30.0" prefWidth="212.0" promptText="Ville" />
+      <JFXTextField fx:id="rue" layoutX="130.0" layoutY="230.0" maxWidth="212.0" minWidth="212.0" prefHeight="30.0" prefWidth="212.0" promptText="Rue" />
+      <JFXTextField fx:id="codePostal" layoutX="130.0" layoutY="280.0" maxWidth="212.0" minWidth="212.0" prefHeight="30.0" prefWidth="212.0" promptText="Code postal" />
+      <Label layoutX="144.0" layoutY="31.0" text="Détails de base" textFill="#00c853">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="role" layoutX="422.0" layoutY="77.0" maxWidth="212.0" minWidth="212.0" prefHeight="30.0" prefWidth="212.0" promptText="Vous êtes ..?">
+      </JFXComboBox>
+      <JFXButton id="register" fx:id="inscription" buttonType="RAISED" layoutX="572.0" layoutY="351.0" onAction="#inscriptionAction" prefHeight="31.0" prefWidth="104.0" ripplerFill="#e1e1e1" style="-fx-border-color: #9eca51; -fx-background-color: #00c853;" text="M'inscrire" textFill="WHITE">
+         <font>
+            <Font name="Montserrat-Bold" size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton id="register" fx:id="effacer" buttonType="RAISED" layoutX="436.0" layoutY="351.0" onAction="#effacerToutLesChampsAction" prefHeight="31.0" prefWidth="104.0" ripplerFill="#e1e1e1" style="-fx-border-color: #9eca51; -fx-background-color: #00c853;" text="Effacer tout" textFill="WHITE">
+         <font>
+            <Font name="Montserrat-Bold" size="15.0" />
+         </font>
+      </JFXButton>
+      <Pane fx:id="main_pain" layoutX="387.0" layoutY="114.0" prefHeight="204.0" prefWidth="313.0" />
+      <JFXButton fx:id="choisirImage" layoutX="130.0" layoutY="330.0" onAction="#chooseImageAction" prefHeight="30.0" prefWidth="212.0" style="-fx-background-color: #ffbf00;" text="Choisissez une photo" />
+      <Pane fx:id="imagePain" layoutX="132.0" layoutY="365.0" prefHeight="31.0" prefWidth="212.0" />
+      <Pane fx:id="errorPain" layoutX="295.0" layoutY="12.0" prefHeight="52.0" prefWidth="363.0" />
+      <Pane fx:id="weakPass" layoutX="433.0" layoutY="262.0" prefHeight="9.0" prefWidth="41.0" />
+      <Pane fx:id="mediumPass" layoutX="474.0" layoutY="262.0" prefHeight="9.0" prefWidth="41.0" />
+      <Pane fx:id="strongPass" layoutX="515.0" layoutY="262.0" prefHeight="9.0" prefWidth="41.0" />
+   </children>
+</AnchorPane>
