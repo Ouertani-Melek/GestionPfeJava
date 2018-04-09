@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="370.0" prefWidth="666.0" style="-fx-background-color: #7ad049;" styleClass="parent" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.DemandeControllers.FXMLDocumentController">
+   <children>
+      <ImageView fitHeight="370.0" fitWidth="756.0" opacity="0.87" pickOnBounds="true">
+         <image>
+            <Image url="@../images/banner/03_1.jpg" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="726.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#close_app" prefHeight="30.0" prefWidth="30.0" styleClass="close_label" />
+      <HBox alignment="CENTER_LEFT" layoutX="64.0" layoutY="153.0" prefHeight="50.0" prefWidth="644.0">
+         <children>
+            <ImageView fx:id="img1" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/events/clock.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbl1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="4.0" prefWidth="100.0" />
+            <ImageView fx:id="img2" fitHeight="45.0" fitWidth="45.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/events/clock.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbl2" layoutX="60.0" layoutY="33.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="4.0" prefWidth="100.0" />
+            <ImageView fx:id="img3" fitHeight="45.0" fitWidth="45.0" layoutX="160.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/events/clock.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbl3" layoutX="210.0" layoutY="33.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="4.0" prefWidth="100.0" />
+            <ImageView fx:id="img4" fitHeight="45.0" fitWidth="45.0" layoutX="310.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/events/clock.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbl4" layoutX="360.0" layoutY="33.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="4.0" prefWidth="100.0" />
+            <ImageView fx:id="img5" fitHeight="45.0" fitWidth="45.0" layoutX="460.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/events/clock.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <Text fx:id="text1" layoutX="48.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="72.13671875">
+         <font>
+            <Font size="15.0" />
+         </font></Text>
+      <Text fx:id="text2" layoutX="193.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="72.13671875">
+         <font>
+            <Font size="15.0" />
+         </font></Text>
+      <Text fx:id="text3" layoutX="339.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="72.13671875">
+         <font>
+            <Font size="15.0" />
+         </font></Text>
+      <Text fx:id="text4" layoutX="484.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="72.13671875">
+         <font>
+            <Font size="15.0" />
+         </font></Text>
+      <Text fx:id="text5" layoutX="632.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="72.13671875">
+         <font>
+            <Font size="15.0" />
+         </font></Text>
+      <Label layoutX="16.0" layoutY="31.0" prefHeight="69.0" prefWidth="443.0" text="Bienvenue.. Merci d'attendre au prés de 10 secondes..." textAlignment="CENTER" textFill="#d72020">
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+         <font>
+            <Font name="Montserrat-Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_msg" alignment="CENTER" layoutX="260.0" layoutY="300.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="41.0" prefWidth="237.0" text="Terminé" textFill="#7ad049" visible="false">
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+         <font>
+            <Font name="Montserrat-Bold" size="16.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/events/smile.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+      <Label prefHeight="41.0" prefWidth="237.0" text="YAYA">
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+         <font>
+            <Font name="SansSerif Bold" size="16.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../EGDownloads/Compressed/ScanningAnimation/src/images/benny.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+   </children>
+</AnchorPane>

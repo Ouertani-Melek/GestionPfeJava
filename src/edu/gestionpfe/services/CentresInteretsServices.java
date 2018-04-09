@@ -14,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -71,4 +73,16 @@ public List<CentresInterets> AfficherCentre(int id) {
          
         return centre;
     }
+ public void updateCentre(int id,String f){
+         try {
+             Connection connection = ConnectionToDataBase.getInstance().getConnection();
+             String req="update centres_interets set centreInteret=? where id=?";
+             PreparedStatement pst = connection.prepareStatement(req);
+             pst.setString(1,f);
+             pst.setInt(2, id);
+             pst.execute();
+         } catch (SQLException ex) {
+             Logger.getLogger(FormationServices.class.getName()).log(Level.SEVERE, null, ex);
+         }
+     }
 }

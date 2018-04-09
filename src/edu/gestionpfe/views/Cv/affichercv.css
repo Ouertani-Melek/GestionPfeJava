@@ -2,7 +2,12 @@
     Created on : 11 Nov, 2017, 4:42:53 AM
     Author     : afsal villan
 */
-
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+.scroll-pane {
+   -fx-background-color: transparent;
+}
 * {
     -fx-primary : #2A2E37;
     -fx-secondary : #FFFF8D;
@@ -41,8 +46,16 @@
     -fx-text-fill: -fx-primarytext;
     -fx-font-size : 15pt;
     -jfx-focus-color: -fx-green;
-    -fx-text-fill: derive(-fx-green, 20%);
+    -fx-text-fill: -fx-green;
+    
 }
+/*.combo-box-base {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, white;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 3px, 3px, 2px, 1px;
+    -fx-border-width: 20 20 20 20;
+    
+}*/
 
 /*Login Screen Specific*/
 

@@ -77,4 +77,28 @@ public class CompetencesTechniquesServices {
          
         return techs;
     }
+      public void updateCompetence(int id,String f){
+         try {
+             Connection connection = ConnectionToDataBase.getInstance().getConnection();
+             String req="update competences_techniques set competence=? where id=?";
+             PreparedStatement pst = connection.prepareStatement(req);
+             pst.setString(1,f);
+             pst.setInt(2, id);
+             pst.execute();
+         } catch (SQLException ex) {
+             Logger.getLogger(FormationServices.class.getName()).log(Level.SEVERE, null, ex);
+         }
+     }
+      public void updateLevel(int id,String f){
+         try {
+             Connection connection = ConnectionToDataBase.getInstance().getConnection();
+             String req="update competences_techniques set level=? where id=?";
+             PreparedStatement pst = connection.prepareStatement(req);
+             pst.setString(1,f);
+             pst.setInt(2, id);
+             pst.execute();
+         } catch (SQLException ex) {
+             Logger.getLogger(FormationServices.class.getName()).log(Level.SEVERE, null, ex);
+         }
+     }
 }

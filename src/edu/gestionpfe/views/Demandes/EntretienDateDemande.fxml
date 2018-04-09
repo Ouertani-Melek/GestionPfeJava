@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="EntretienAnchor" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" stylesheets="@Progress.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.DemandeControllers.EntretienDateDemandeController">
+   <children>
+      <JFXDatePicker fx:id="DateEnJour" defaultColor="#49900b" editable="false" layoutX="147.0" layoutY="91.0" prefHeight="41.0" prefWidth="286.0" promptText="Date de L'entretien" styleClass="date-picker-popup" stylesheets="@Progress.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXDatePicker>
+      <JFXTimePicker fx:id="TempsExact" defaultColor="#49900b" layoutX="146.0" layoutY="173.0" prefHeight="41.0" prefWidth="286.0" promptText="Temps De L'Entretien">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXTimePicker>
+      <JFXComboBox fx:id="ListMethode" focusColor="#49900b" labelFloat="true" layoutX="139.0" layoutY="254.0" prefHeight="41.0" prefWidth="286.0" promptText="Methode De communication" unFocusColor="#49900b">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXComboBox>
+      <JFXTextField alignment="CENTER" editable="false" labelFloat="true" layoutX="80.0" layoutY="22.0" prefHeight="25.0" prefWidth="420.0" text="Veuillez remplir les Champs" />
+      <JFXButton layoutX="200.0" layoutY="331.0" onAction="#AjouterEntretien" prefHeight="48.0" prefWidth="125.0" text="Ajouter">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton layoutX="475.0" layoutY="331.0" onAction="#Leave" prefHeight="48.0" prefWidth="109.0" text="Quitter">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>

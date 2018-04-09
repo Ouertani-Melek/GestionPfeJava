@@ -8,6 +8,7 @@ package edu.gestionpfe.controllers;
 import com.jfoenix.controls.JFXButton;
 import static edu.gestionpfe.controllers.ConnectionController.usr;
 import static edu.gestionpfe.controllers.UserIndexController.containerP;
+import edu.gestionpfe.models.User;
 import edu.gestionpfe.services.CvServices;
 import edu.gestionpfe.services.UserServices;
 import java.io.IOException;
@@ -28,7 +29,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-
+import static edu.gestionpfe.controllers.ConnectionController.usr;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 /**
  * FXML Controller class
  *
@@ -42,8 +45,7 @@ public class ProfilesidebarController implements Initializable {
     private JFXButton b2;
     @FXML
     private JFXButton b3;
-    @FXML
-    private ImageView userImage;
+
     @FXML
     private JFXButton exit;
     @FXML
@@ -52,6 +54,8 @@ public class ProfilesidebarController implements Initializable {
     private StackPane pane1;
     @FXML
     private Text nometprenom;
+    @FXML
+    private Circle userImage;
     
     /**
      * Initializes the controller class.
@@ -65,9 +69,16 @@ public class ProfilesidebarController implements Initializable {
             Image imageUser;
             Text txt; 
            imageUser = UserServices.getUserImage(ConnectionController.getUser()).getImage();
-            userImage.setImage(imageUser);
-            userImage.setPreserveRatio(true);
-            userImage.setStyle("-fx-border-radius: 10 10 10 10");
+           
+            ImageView img;
+            
+            User userr = UserServices.selectUserById(usr.getId());
+            
+            
+            img = UserServices.getUserImage(userr);
+            Image image = img.getImage();
+           
+            userImage.setFill(new ImagePattern(image));
            
             nometprenom.setText(usr.getNom()+" "+usr.getPrenom());
             b1.setOnAction(new EventHandler<ActionEvent>() {

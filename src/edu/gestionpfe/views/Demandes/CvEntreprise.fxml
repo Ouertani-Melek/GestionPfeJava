@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane fx:id="CvAnchorPane" minHeight="0.0" minWidth="0.0" opacity="0.95" prefHeight="750.0" prefWidth="600.0" style="-fx-background-color: #1a1a1a;" stylesheets="@Progress.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.DemandeControllers.EntrepriseCvController">
+   <children>
+      <Circle fx:id="UserImageHere" fill="DODGERBLUE" layoutX="71.0" layoutY="95.0" radius="69.0" stroke="BLACK" strokeType="INSIDE" />
+      <JFXTextField fx:id="NomPrenom" alignment="CENTER" editable="false" focusTraversable="false" labelFloat="true" layoutX="161.0" layoutY="33.0" prefHeight="38.0" prefWidth="163.0" promptText="Nom et Prenom" AnchorPane.bottomAnchor="679.0" AnchorPane.topAnchor="33.0" />
+      <JFXTextField fx:id="maiUser" alignment="CENTER" editable="false" focusTraversable="false" labelFloat="true" layoutX="349.0" layoutY="90.0" prefHeight="38.0" prefWidth="243.0" promptText="Email" />
+      <JFXTextField fx:id="universite" alignment="CENTER" editable="false" focusTraversable="false" labelFloat="true" layoutX="158.0" layoutY="90.0" prefHeight="25.0" prefWidth="169.0" promptText="Université" />
+      <JFXTextField fx:id="Adresse" alignment="CENTER" editable="false" focusTraversable="false" labelFloat="true" layoutX="349.0" layoutY="33.0" prefHeight="38.0" prefWidth="243.0" promptText="Adresse" />
+      <JFXTextField fx:id="Tel" alignment="CENTER" editable="false" focusTraversable="false" labelFloat="true" layoutX="152.0" layoutY="145.0" prefHeight="25.0" prefWidth="177.0" promptText="Numero Telephone" />
+      <JFXTextField fx:id="Niveau" alignment="CENTER" editable="false" focusTraversable="false" labelFloat="true" layoutX="351.0" layoutY="145.0" prefHeight="38.0" prefWidth="243.0" promptText="Niveau" />
+      <ScrollPane hbarPolicy="NEVER" layoutX="19.0" layoutY="191.0" prefHeight="529.0" prefWidth="559.0" vbarPolicy="NEVER">
+         <content>
+            <VBox prefHeight="1013.0" prefWidth="560.0" spacing="35.0">
+               <children>
+                  <VBox fx:id="PutFormation" prefHeight="200.0" prefWidth="530.0" spacing="35.0">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="10.0" right="20.0" top="20.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <JFXTextField alignment="CENTER" editable="false" focusTraversable="false" labelFloat="true" text="Toutes les Formation de Candidat">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></JFXTextField>
+                     </children></VBox>
+                  <VBox fx:id="PutCompetence" prefHeight="200.0" prefWidth="530.0" spacing="35.0">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="10.0" right="20.0" top="20.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <JFXTextField alignment="CENTER" editable="false" focusTraversable="false" labelFloat="true" prefHeight="38.0" prefWidth="493.0" text="Toutes les Competences Techniques de Candidat" />
+                     </children></VBox>
+                  <VBox fx:id="PutLangues" prefHeight="200.0" prefWidth="535.0" spacing="35.0">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <JFXTextField alignment="CENTER" editable="false" focusTraversable="false" labelFloat="true" prefHeight="38.0" prefWidth="493.0" text="Les Langues Maitrisées Par le Candidat" />
+                     </children></VBox>
+                  <VBox fx:id="PutCentres" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="530.0" spacing="35.0">
+                     <children>
+                        <JFXTextField alignment="CENTER" editable="false" focusTraversable="false" labelFloat="true" prefHeight="38.0" prefWidth="493.0" promptText="Les Centeres d'interets" text="Les Centres d'interets de Candidat" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="15.0" />
+                     </padding></VBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                     <children>
+                        <JFXButton fx:id="acc" onAction="#accepter" prefHeight="44.0" prefWidth="151.0" text="Accepter">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXButton fx:id="refu" layoutX="215.0" layoutY="23.0" onAction="#Refuser" prefHeight="44.0" prefWidth="151.0" text="Refuser">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXButton layoutX="290.0" layoutY="23.0" onAction="#Quitter" prefHeight="44.0" prefWidth="151.0" text="Quitter">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets top="30.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

@@ -169,7 +169,7 @@ public static User usr;
                                     Stage currentstage = (Stage) login.getScene().getWindow();
                                     currentstage.close();
 
-                                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/edu/gestionpfe/views/AdminIndex.fxml"));
+                                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/edu/gestionpfe/views/Default/AdminIndex.fxml"));
                                     Parent root1 = (Parent) fxmlLoader.load();
                                     Stage stage = new Stage();
                                     stage.initStyle(StageStyle.UNDECORATED);

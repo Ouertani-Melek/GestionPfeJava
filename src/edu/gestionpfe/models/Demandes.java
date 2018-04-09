@@ -5,9 +5,9 @@
  */
 package edu.gestionpfe.models;
 
-import java.time.LocalDate;
+import edu.gestionpfe.services.DemandesServices;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  *
@@ -24,10 +24,22 @@ public class Demandes {
     private boolean confirmation;
     private int idOffre;
     private int idUser;
+    private String TitreOffre;
+    
+
+    
+    
+    
 
     
     public int getId() {
         return id;
+    }
+    public void settitreOffrePrDemande(int idOffre){
+        this.TitreOffre=DemandesServices.FindTitreOffre(idOffre);
+    }
+    public String gettitreOffrePrDemande(){
+        return this.TitreOffre;
     }
 
     public void setId(int id) {
@@ -59,6 +71,9 @@ public class Demandes {
     }
 
     public boolean isEtatEntretien() {
+        return etatEntretien;
+    }
+    public Boolean getEtatEntretien() {
         return etatEntretien;
     }
 
@@ -102,7 +117,29 @@ public class Demandes {
     public String toString() {
         return "Demandes{" + "id=" + id + ", etatDemande=" + etatDemande + ", dateDemande=" + dateDemande + ", dateEntretien=" + dateEntretien + ", etatEntretien=" + etatEntretien + ", methodeCommunication=" + methodeCommunication + ", confirmation=" + confirmation + ", idOffre=" + idOffre + ", idUser=" + idUser + '}';
     }
-    
+    //            c.setOnMouseEntered((MouseEvent t) -> {
+//                Delet.setVisible(true);
+//                b.setVisible(true);
+//                l.setVisible(true);
+//
+//                c.setOpacity(0.5);
+//            });
+//            c.setOnMouseExited((MouseEvent t) -> {
+//                b.setVisible(false);  //btnsa.setStyle("-fx-background-color:transparent;");
+//                l.setVisible(false);
+//                 Delet.setVisible(false);
+//                c.setOpacity(1);
+//            });
+//            b.setOnMouseEntered((MouseEvent t) -> {
+//                b.setVisible(true);
+//               
+//
+//            });
+//            Delet.setOnMouseEntered((MouseEvent t) -> {
+//                Delet.setVisible(true);
+//               
+//
+//            });
     
       
 }

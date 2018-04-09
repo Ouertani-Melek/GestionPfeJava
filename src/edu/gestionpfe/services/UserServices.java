@@ -174,6 +174,8 @@ public class UserServices {
     }
 
     public static ImageView getUserImage(User user) throws Exception {
+        if(user.getImage().contains(" "))
+        user.setImage(user.getImage().replaceAll(" ","%20"));
         String imageUrl = "http://localhost/gestionpfe/web/uploads/user/" + user.getImage();
         URL url = new URL(imageUrl);
         BufferedImage c = ImageIO.read(url);
@@ -213,6 +215,7 @@ public class UserServices {
                 usr.setVille(resultSet.getString("ville"));
                 usr.setConfirmer(resultSet.getBoolean("verifier"));
                 usr.setRoles(resultSet.getString("roles"));
+                usr.setEmail(resultSet.getString("email"));
             }
             return usr;
         }

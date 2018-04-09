@@ -7,7 +7,7 @@ package edu.gestionpfe.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import static edu.gestionpfe.controllers.ConnectionController.usr;
-import static edu.gestionpfe.controllers.ListDesDemandesController.myAnchorP;
+import static edu.gestionpfe.controllers.DemandeControllers.ListDesDemandesController.myAnchorP;
 import static edu.gestionpfe.controllers.UserIndexController.rootP;
 import edu.gestionpfe.models.Demandes;
 import edu.gestionpfe.models.User;
@@ -76,6 +76,8 @@ private int DemandeNbr = 0;
     public static AnchorPane containerP;
     @FXML
     private JFXButton afficheD;
+    @FXML
+    private JFXButton AfficherAccepte;
 
     
     /**
@@ -104,6 +106,25 @@ private int DemandeNbr = 0;
                             
                             try {
                                 node =(AnchorPane) FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Demandes/ListDesDemandes.fxml"));
+                            } catch (IOException ex) {
+                                Logger.getLogger(EntrepriseIndexController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                                container.getChildren().setAll(node);
+                                    
+                        }
+                    });
+                }
+            });
+             AfficherAccepte.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            
+                            try {
+                                node =(AnchorPane) FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Demandes/ListeDesAccepte.fxml"));
                             } catch (IOException ex) {
                                 Logger.getLogger(EntrepriseIndexController.class.getName()).log(Level.SEVERE, null, ex);
                             }

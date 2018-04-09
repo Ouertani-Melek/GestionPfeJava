@@ -40,6 +40,21 @@ public class CvServices {
         return IDCV;
     
     }
+    public static int CVIdentifiant(int id) throws SQLException{
+       
+        Connection connection = ConnectionToDataBase.getInstance().getConnection();
+            String sql= "select id from cv where iduser ="+id ;
+            PreparedStatement pst=connection.prepareStatement(sql);
+            resultSet=pst.executeQuery();
+            while (resultSet.next()) {
+                
+                 IDCV=resultSet.getInt("id");
+                 }
+        
+        
+        return IDCV;
+    
+    }
     public static Cv findCv() throws SQLException{
         
          

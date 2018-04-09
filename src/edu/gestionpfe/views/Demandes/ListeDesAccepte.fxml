@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="681.0" prefWidth="895.0" style="-fx-background-color: #000000;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.DemandeControllers.ListeDesAccepteController">
+    <stylesheets>
+        <URL value="@listedesaccepte.css" />
+    </stylesheets>
+   <children>
+      <ImageView fitHeight="682.0" fitWidth="895.0" opacity="0.46" pickOnBounds="true">
+         <image>
+            <Image url="@../images/events/event-detail.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="mAnchorAccepte" accessibleRole="TREE_ITEM" accessibleRoleDescription="a" layoutX="74.0" layoutY="121.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="767.0" stylesheets="@Progress.css">
+         <children>
+            <Pagination fx:id="paginationAccepte" opacity="0.8" pageCount="1" prefHeight="650.0" prefWidth="728.0" style="-fx-background-color: #ffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
+      <Text fill="#49b837" layoutX="77.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Candidat acceptés" wrappingWidth="451.13671875">
+         <font>
+            <Font name="Montserrat-Bold" size="30.0" />
+         </font>
+      </Text>
+      <JFXTextField fx:id="searchAcceptee" focusColor="#55c248" labelFloat="true" layoutX="637.0" layoutY="79.0" opacity="0.71" prefHeight="29.0" prefWidth="201.0" promptText="Rechercher par titre.." style="-fx-background-color: #ffff; -fx-border-color: #55c248;" unFocusColor="#55c248">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+      </JFXTextField>
+   </children>
+</AnchorPane>

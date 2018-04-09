@@ -1,0 +1,97 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package edu.gestionpfe.controllers;
+
+import com.jfoenix.controls.JFXButton;
+import static edu.gestionpfe.controllers.ConnectionController.usr;
+import gestionpfe.NaivgationDrawer;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.animation.FadeTransition;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
+
+/**
+ *
+ * @author yahia
+ */
+public class AdminIndexController  implements Initializable{
+
+    @FXML
+    private AnchorPane root;
+    
+    public static AnchorPane rootP;
+    @FXML
+    private JFXButton afficheD;
+    @FXML
+    private JFXButton AfficherAccepte;
+    @FXML
+    private AnchorPane container;
+    public  static  AnchorPane containerP;
+    @FXML
+    private Text label;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //TODO
+        if (!NaivgationDrawer.isSplashLoaded) {
+                loadSplashScreen();
+            }
+            label.setText("Connecté en tant que Administrateur" );
+            label.setStyle("-fx-text-inner-color: #9eca51");
+            rootP=root;
+            containerP=container;
+           
+        
+    }
+     private void loadSplashScreen() {
+        try {
+            NaivgationDrawer.isSplashLoaded = true;
+
+            StackPane pane = FXMLLoader.load(getClass().getResource(("/edu/gestionpfe/views/Default/SplashFXML.fxml")));
+            root.getChildren().setAll(pane);
+                    
+            FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), pane);
+            fadeIn.setFromValue(0);
+            fadeIn.setToValue(1);
+            fadeIn.setCycleCount(1);
+
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), pane);
+            fadeOut.setFromValue(1);
+            fadeOut.setToValue(0);
+            fadeOut.setCycleCount(1);
+
+            fadeIn.play();
+
+            fadeIn.setOnFinished((e) -> {
+                fadeOut.play();
+            });
+
+            fadeOut.setOnFinished((e) -> {
+                try {
+                    AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("/edu/gestionpfe/views/Default/AdminIndex.fxml")));
+                    root.getChildren().setAll(parentContent);
+
+                } catch (IOException ex) {
+                    Logger.getLogger(EntrepriseIndexController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+
+        } catch (IOException ex) {
+            Logger.getLogger(EntrepriseIndexController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+}

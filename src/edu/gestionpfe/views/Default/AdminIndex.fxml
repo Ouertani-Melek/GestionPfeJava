@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1">
-    <stylesheets>
-        <URL value="@adminindex.css"/>
-    </stylesheets>
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.AdminIndexController">
+   <children>
+      <AnchorPane layoutY="59.0" prefHeight="650.0" prefWidth="146.0" style="-fx-background-color: #080808;">
+         <children>
+            <VBox opacity="0.7" prefHeight="650.0" prefWidth="149.0" styleClass="toolbar-container" stylesheets="@../Cv/affichercv.css">
+               <children>
+                  <JFXButton contentDisplay="TOP" mnemonicParsing="false" prefHeight="400.0" prefWidth="160.0" styleClass="toolbar-button" text="Encadrement" textAlignment="CENTER">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="USER" size="25" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="400.0" prefWidth="160.0" styleClass="toolbar-button" text="Mes Offres" textAlignment="CENTER">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="BOOK" size="25" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="afficheD" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="400.0" prefWidth="160.0" styleClass="toolbar-button" text="Demandes" textAlignment="CENTER">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="TABLE" size="25" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="81.0" mnemonicParsing="false" prefHeight="400.0" prefWidth="160.0" styleClass="toolbar-button" text="Soutenances" textAlignment="CENTER">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="TABLE" size="25" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="AfficherAccepte" contentDisplay="TOP" mnemonicParsing="false" prefHeight="400.0" prefWidth="160.0" styleClass="toolbar-button" text="Reclamations" textAlignment="CENTER">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CHECK" size="25" textAlignment="CENTER" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="223.0" mnemonicParsing="false" prefHeight="145.0" prefWidth="154.0" styleClass="toolbar-button" text="Quitter" textAlignment="CENTER">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="COG" size="25" />
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="container" layoutX="149.0" layoutY="59.0" prefHeight="650.0" prefWidth="880.0" />
+      <Pane layoutX="-6.0" prefHeight="59.0" prefWidth="1038.0" style="-fx-background-color: #080808;" />
+      <Text fx:id="label" fill="#9eca51" layoutX="800.0" layoutY="29.0" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <ImageView fitHeight="20.0" fitWidth="100.0" layoutX="23.0" layoutY="15.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/logo.png" />
+         </image>
+      </ImageView>
+      <Pane layoutY="709.0" prefHeight="59.0" prefWidth="1032.0" style="-fx-background-color: #080808;" />
+      <ImageView fitHeight="20.0" fitWidth="156.0" layoutX="450.0" layoutY="721.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/logo.png" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>

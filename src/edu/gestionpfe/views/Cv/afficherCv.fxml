@@ -6,304 +6,287 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="820.0" stylesheets="@affichercv.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.AfficherCvController">
+<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="832.0" stylesheets="@affichercv.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.CVControllers.AfficherCvController">
    <children>
-      <AnchorPane fx:id="rootAnchorPane" prefHeight="651.0" prefWidth="820.0">
+      <ImageView fitHeight="650.0" fitWidth="832.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/banner/03.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="rootAnchorPane" prefHeight="650.0" prefWidth="832.0">
          <children>
-            <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <JFXTabPane fx:id="mainTabPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <tabs>
-                        <Tab fx:id="bookIssueTab" text="Informations Personnels">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <AnchorPane layoutY="59.0" opacity="0.88" prefHeight="591.0" prefWidth="820.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="59.0" />
+            <JFXTabPane fx:id="mainTabPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <tabs>
+                  <Tab fx:id="bookIssueTab" text="Informations Personnels">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox prefHeight="412.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <VBox prefHeight="412.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <HBox fx:id="book_info" alignment="CENTER" prefHeight="200.0" prefWidth="1000.0">
                                        <children>
-                                          <HBox fx:id="book_info" alignment="CENTER" prefHeight="200.0" prefWidth="1000.0">
+                                          <VBox alignment="CENTER" spacing="20.0">
+                                             <HBox.margin>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </HBox.margin>
                                              <children>
-                                                <VBox alignment="CENTER" spacing="20.0">
-                                                   <HBox.margin>
-                                                      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                                   </HBox.margin>
+                                                <FontAwesomeIconView glyphName="BOOK" size="30" />
+                                                <JFXTextField editable="false" labelFloat="true" onAction="#loadBookInfo" prefHeight="26.0" prefWidth="230.0" promptText="Adresse" text="Informations" />
+                                             </children>
+                                          </VBox>
+                                          <StackPane fx:id="bookInfoContainer">
+                                             <HBox.margin>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <VBox alignment="CENTER" opacity="0.8" prefHeight="147.0" prefWidth="550.0" style="-fx-background-color: #ffff;">
                                                    <children>
-                                                      <FontAwesomeIconView glyphName="BOOK" size="30" />
-                                                      <JFXTextField editable="false" labelFloat="true" onAction="#loadBookInfo" prefHeight="26.0" prefWidth="230.0" promptText="Adresse" text="Informations" />
+                                                      <Text fx:id="AdresseFull" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" textAlignment="CENTER" wrappingWidth="460.0">
+                                                         <VBox.margin>
+                                                            <Insets top="12.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <Text fx:id="NumerTelUser" layoutX="10.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" textAlignment="CENTER" wrappingWidth="460.0">
+                                                         <VBox.margin>
+                                                            <Insets top="12.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <Text fx:id="Universite" layoutX="10.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" textAlignment="CENTER" wrappingWidth="460.0">
+                                                         <VBox.margin>
+                                                            <Insets top="12.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <Text fx:id="EmailUser" layoutX="35.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" textAlignment="CENTER" wrappingWidth="460.0">
+                                                         <VBox.margin>
+                                                            <Insets top="12.0" />
+                                                         </VBox.margin>
+                                                      </Text>
                                                    </children>
                                                 </VBox>
-                                                <StackPane fx:id="bookInfoContainer">
-                                                   <HBox.margin>
-                                                      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                                   </HBox.margin>
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox fx:id="member_info" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="1000.0">
+                                       <children>
+                                          <VBox alignment="CENTER" spacing="20.0">
+                                             <HBox.margin>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <FontAwesomeIconView glyphName="USER" size="30" />
+                                                <JFXTextField fx:id="memberIDInput" editable="false" labelFloat="true" onAction="#loadMemberInfo" prefWidth="230.0" promptText="Etudiant" text="Informations" />
+                                             </children>
+                                          </VBox>
+                                          <AnchorPane prefHeight="220.0" prefWidth="506.0">
+                                             <children>
+                                                <VBox layoutX="-6.0" layoutY="33.0" opacity="0.8" prefHeight="200.0" prefWidth="512.0" style="-fx-background-color: #ffff;">
                                                    <children>
-                                                      <VBox alignment="CENTER" prefHeight="147.0" prefWidth="550.0">
+                                                      <Text fx:id="UserFullName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" textAlignment="CENTER" wrappingWidth="503.0">
+                                                         <VBox.margin>
+                                                            <Insets top="50.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <Text fx:id="niveau" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" textAlignment="CENTER" wrappingWidth="511.0">
+                                                         <VBox.margin>
+                                                            <Insets top="50.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="20.0" right="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="bookIssueTab1" text="Formations">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox prefHeight="412.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox fx:id="book_info1" alignment="CENTER" prefHeight="800.0" prefWidth="1000.0">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="425.0" prefWidth="165.0" spacing="20.0">
+                                             <HBox.margin>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <FontAwesomeIconView glyphName="BOOK" size="30" />
+                                                <JFXTextField editable="false" labelFloat="true" onAction="#loadBookInfo" prefHeight="26.0" prefWidth="230.0" text="Formation" />
+                                             </children>
+                                          </VBox>
+                                          <StackPane fx:id="bookInfoContainer1" prefHeight="600.0" prefWidth="600.0">
+                                             <HBox.margin>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <ScrollPane fx:id="scrollformation" prefHeight="524.0" prefWidth="535.0" style="-fx-background-color: #0000;">
+                                                   <content>
+                                                      <VBox fx:id="FormationContent" alignment="CENTER" fillWidth="false" opacity="0.9" prefHeight="488.0" prefWidth="565.0" spacing="10.0" style="-fx-background-color: #ffff;">
                                                          <children>
-                                                            <Text fx:id="AdresseFull" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" textAlignment="CENTER" wrappingWidth="460.0">
+                                                            <Text fx:id="FormationEtDate" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" textAlignment="CENTER" wrappingWidth="460.0">
                                                                <VBox.margin>
-                                                                  <Insets top="10.0" />
-                                                               </VBox.margin>
-                                                            </Text>
-                                                            <Text fx:id="NumerTelUser" layoutX="10.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" textAlignment="CENTER" wrappingWidth="460.0">
-                                                               <VBox.margin>
-                                                                  <Insets top="10.0" />
-                                                               </VBox.margin>
-                                                            </Text>
-                                                            <Text fx:id="Universite" layoutX="10.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" textAlignment="CENTER" wrappingWidth="460.0">
-                                                               <VBox.margin>
-                                                                  <Insets top="10.0" />
-                                                               </VBox.margin>
-                                                            </Text>
-                                                            <Text fx:id="EmailUser" layoutX="35.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" textAlignment="CENTER" wrappingWidth="460.0">
-                                                               <VBox.margin>
-                                                                  <Insets top="10.0" />
+                                                                  <Insets top="-100.0" />
                                                                </VBox.margin>
                                                             </Text>
                                                          </children>
                                                       </VBox>
-                                                   </children>
-                                                </StackPane>
+                                                   </content>
+                                                   <StackPane.margin>
+                                                      <Insets top="20.0" />
+                                                   </StackPane.margin>
+                                                </ScrollPane>
                                              </children>
-                                             <VBox.margin>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <HBox fx:id="member_info" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="1000.0">
-                                             <children>
-                                                <VBox alignment="CENTER" spacing="20.0">
-                                                   <HBox.margin>
-                                                      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                                   </HBox.margin>
-                                                   <children>
-                                                      <FontAwesomeIconView glyphName="USER" size="30" />
-                                                      <JFXTextField fx:id="memberIDInput" editable="false" labelFloat="true" onAction="#loadMemberInfo" prefWidth="230.0" promptText="Etudiant" text="Informations" />
-                                                   </children>
-                                                </VBox>
-                                                <AnchorPane prefHeight="200.0" prefWidth="468.0">
-                                                   <children>
-                                                      <VBox layoutX="4.0" prefHeight="200.0" prefWidth="512.0">
-                                                         <children>
-                                                            <Text fx:id="UserFullName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" textAlignment="CENTER" wrappingWidth="503.0">
-                                                               <VBox.margin>
-                                                                  <Insets top="50.0" />
-                                                               </VBox.margin>
-                                                            </Text>
-                                                            <Text fx:id="niveau" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" textAlignment="CENTER" wrappingWidth="511.0">
-                                                               <VBox.margin>
-                                                                  <Insets top="30.0" />
-                                                               </VBox.margin>
-                                                            </Text>
-                                                         </children>
-                                                      </VBox>
-                                                   </children>
-                                                </AnchorPane>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="20.0" right="20.0" />
-                                             </VBox.margin>
-                                          </HBox>
+                                          </StackPane>
                                        </children>
-                                    </VBox>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
                                  </children>
-                              </AnchorPane>
-                           </content>
-                        </Tab>
-                        <Tab fx:id="bookIssueTab1" text="Formations">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="bookIssueTab11" text="Langues">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox prefHeight="412.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <VBox prefHeight="412.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <HBox fx:id="book_info11" alignment="CENTER" prefHeight="800.0" prefWidth="1000.0">
                                        <children>
-                                          <HBox fx:id="book_info1" alignment="CENTER" prefHeight="800.0" prefWidth="1000.0">
-                                             <children>
-                                                <VBox alignment="CENTER" spacing="20.0">
-                                                   <HBox.margin>
-                                                      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                                   </HBox.margin>
-                                                   <children>
-                                                      <FontAwesomeIconView glyphName="BOOK" size="30" />
-                                                      <JFXTextField editable="false" labelFloat="true" onAction="#loadBookInfo" prefHeight="26.0" prefWidth="230.0" text="Formation" />
-                                                   </children>
-                                                </VBox>
-                                                <StackPane fx:id="bookInfoContainer1" prefHeight="600.0" prefWidth="600.0">
-                                                   <HBox.margin>
-                                                      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                                   </HBox.margin>
-                                                   <children>
-                                                      <ScrollPane prefHeight="524.0" prefWidth="535.0" style="-fx-background-color: #0000;">
-                                                         <content>
-                                                            <VBox fx:id="FormationContent" alignment="CENTER" fillWidth="false" prefHeight="403.0" prefWidth="533.0" spacing="10.0">
-                                                               <children>
-                                                                  <Text fx:id="FormationEtDate" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" textAlignment="CENTER" wrappingWidth="460.0">
-                                                                     <VBox.margin>
-                                                                        <Insets top="-100.0" />
-                                                                     </VBox.margin>
-                                                                  </Text>
-                                                               </children>
-                                                            </VBox>
-                                                         </content>
-                                                         <StackPane.margin>
-                                                            <Insets top="20.0" />
-                                                         </StackPane.margin>
-                                                      </ScrollPane>
-                                                   </children>
-                                                </StackPane>
-                                             </children>
-                                             <VBox.margin>
+                                          <VBox alignment="CENTER" prefHeight="449.0" prefWidth="176.0" spacing="20.0">
+                                             <HBox.margin>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </Tab>
-                        <Tab fx:id="bookIssueTab11" text="Langues">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <VBox prefHeight="412.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <HBox fx:id="book_info11" alignment="CENTER" prefHeight="800.0" prefWidth="1000.0">
+                                             </HBox.margin>
                                              <children>
-                                                <VBox alignment="CENTER" spacing="20.0">
-                                                   <HBox.margin>
-                                                      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                                   </HBox.margin>
-                                                   <children>
-                                                      <FontAwesomeIconView glyphName="BOOK" size="30" />
-                                                      <JFXTextField editable="false" labelFloat="true" onAction="#loadBookInfo" prefHeight="26.0" prefWidth="230.0" text="Langues" />
-                                                   </children>
-                                                </VBox>
-                                                <StackPane fx:id="bookInfoContainer11">
-                                                   <HBox.margin>
-                                                      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                                   </HBox.margin>
-                                                   <children>
-                                                      <ScrollPane>
-                                                         <content>
-                                                            <VBox fx:id="LanguesContent" alignment="CENTER" prefHeight="600.0" prefWidth="464.0">
-                                                               <children>
-                                                                  <Text fx:id="LanguesEtNiveau" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" textAlignment="CENTER" wrappingWidth="460.0">
-                                                                     <VBox.margin>
-                                                                        <Insets top="10.0" />
-                                                                     </VBox.margin>
-                                                                  </Text>
-                                                               </children>
-                                                            </VBox>
-                                                         </content>
-                                                         <StackPane.margin>
-                                                            <Insets top="20.0" />
-                                                         </StackPane.margin>
-                                                      </ScrollPane>
-                                                   </children>
-                                                </StackPane>
+                                                <FontAwesomeIconView glyphName="BOOK" size="30" />
+                                                <JFXTextField editable="false" labelFloat="true" onAction="#loadBookInfo" prefHeight="26.0" prefWidth="230.0" text="Langues" />
                                              </children>
-                                             <VBox.margin>
+                                          </VBox>
+                                          <StackPane fx:id="bookInfoContainer11">
+                                             <HBox.margin>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </Tab>
-                        <Tab fx:id="bookIssueTab111" text="Languages et Technologies">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <VBox prefHeight="412.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <HBox fx:id="member_info111" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="578.0" prefWidth="780.0">
+                                             </HBox.margin>
                                              <children>
-                                                <VBox alignment="CENTER" spacing="20.0">
-                                                   <HBox.margin>
-                                                      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                                   </HBox.margin>
-                                                   <children>
-                                                      <FontAwesomeIconView glyphName="USER" size="30" />
-                                                      <JFXTextField fx:id="memberIDInput111" editable="false" labelFloat="true" onAction="#loadMemberInfo" prefWidth="230.0" promptText="Etudiant" text="Competences" />
-                                                   </children>
-                                                </VBox>
-                                                <StackPane fx:id="memberInfoContainer111">
-                                                   <HBox.margin>
-                                                      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                                   </HBox.margin>
-                                                   <children>
-                                                      <VBox fx:id="techsContent" alignment="CENTER" prefHeight="151.0" prefWidth="550.0">
-                                                         <children>
-                                                            <Text fx:id="memberName111" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" textAlignment="CENTER" wrappingWidth="460.0">
-                                                               <VBox.margin>
-                                                                  <Insets top="10.0" />
-                                                               </VBox.margin>
-                                                            </Text>
-                                                            <Text fx:id="memberMobile111" layoutX="10.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" textAlignment="CENTER" wrappingWidth="460.0">
-                                                               <VBox.margin>
-                                                                  <Insets top="10.0" />
-                                                               </VBox.margin>
-                                                            </Text>
-                                                         </children>
-                                                      </VBox>
-                                                   </children>
-                                                </StackPane>
+                                                <ScrollPane fx:id="scrollLangue">
+                                                   <content>
+                                                      <VBox fx:id="LanguesContent" alignment="CENTER" opacity="0.9" prefHeight="488.0" prefWidth="518.0" style="-fx-background-color: #ffff;" />
+                                                   </content>
+                                                   <StackPane.margin>
+                                                      <Insets top="20.0" />
+                                                   </StackPane.margin>
+                                                </ScrollPane>
                                              </children>
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="20.0" right="20.0" />
-                                             </VBox.margin>
-                                          </HBox>
+                                          </StackPane>
                                        </children>
-                                    </VBox>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
                                  </children>
-                              </AnchorPane>
-                           </content>
-                        </Tab>
-                        <Tab fx:id="bookIssueTab2" text="Centres d'interet">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="bookIssueTab111" text="Languages et Technologies">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox prefHeight="412.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <VBox prefHeight="412.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <HBox fx:id="member_info111" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="578.0" prefWidth="780.0">
                                        <children>
-                                          <HBox fx:id="book_info2" alignment="CENTER" prefHeight="421.0" prefWidth="780.0">
-                                             <children>
-                                                <VBox alignment="CENTER" spacing="20.0">
-                                                   <HBox.margin>
-                                                      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                                   </HBox.margin>
-                                                   <children>
-                                                      <FontAwesomeIconView glyphName="BOOK" size="30" />
-                                                      <JFXTextField editable="false" labelFloat="true" onAction="#loadBookInfo" prefHeight="26.0" prefWidth="230.0" promptText="Adresse" text="Informations" />
-                                                   </children>
-                                                </VBox>
-                                                <StackPane fx:id="bookInfoContainer2">
-                                                   <HBox.margin>
-                                                      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                                   </HBox.margin>
-                                                   <children>
-                                                      <VBox fx:id="centresContent" alignment="CENTER" prefHeight="147.0" prefWidth="550.0" />
-                                                   </children>
-                                                </StackPane>
-                                             </children>
-                                             <VBox.margin>
+                                          <VBox alignment="CENTER" prefHeight="538.0" prefWidth="142.0" spacing="20.0">
+                                             <HBox.margin>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                             </VBox.margin>
-                                          </HBox>
+                                             </HBox.margin>
+                                             <children>
+                                                <FontAwesomeIconView glyphName="USER" size="30" />
+                                                <JFXTextField fx:id="memberIDInput111" editable="false" labelFloat="true" onAction="#loadMemberInfo" prefWidth="230.0" promptText="Etudiant" text="Competences" />
+                                             </children>
+                                          </VBox>
+                                          <StackPane fx:id="memberInfoContainer111">
+                                             <HBox.margin>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <VBox fx:id="techsContent" alignment="CENTER" opacity="0.95" prefHeight="538.0" prefWidth="573.0" style="-fx-background-color: #FFFF;" />
+                                             </children>
+                                          </StackPane>
                                        </children>
-                                    </VBox>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="20.0" right="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
                                  </children>
-                              </AnchorPane>
-                           </content>
-                        </Tab>
-                     </tabs>
-                  </JFXTabPane>
-               </children>
-            </AnchorPane>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="bookIssueTab2" text="Centres d'interet">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox prefHeight="412.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox fx:id="book_info2" alignment="CENTER" prefHeight="421.0" prefWidth="780.0">
+                                       <children>
+                                          <VBox alignment="CENTER" spacing="20.0">
+                                             <HBox.margin>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <FontAwesomeIconView glyphName="BOOK" size="30" />
+                                                <JFXTextField editable="false" labelFloat="true" onAction="#loadBookInfo" prefHeight="26.0" prefWidth="230.0" promptText="Adresse" text="Informations" />
+                                             </children>
+                                          </VBox>
+                                          <StackPane fx:id="bookInfoContainer2">
+                                             <HBox.margin>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <VBox fx:id="centresContent" alignment="CENTER" opacity="0.95" prefHeight="452.0" prefWidth="471.0" style="-fx-background-color: #ffff;" />
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
          </children>
       </AnchorPane>
    </children>
