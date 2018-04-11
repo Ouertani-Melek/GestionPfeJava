@@ -5,6 +5,7 @@
  */
 package edu.gestionpfe.models;
 
+import edu.gestionpfe.services.OffreServices;
 import edu.gestionpfe.services.UserServices;
 import java.sql.SQLException;
 import java.util.Date;
@@ -43,9 +44,9 @@ public class EtudiantDemandes {
         this.id = id;
     }
 
-    public String getIdoffre() {
-        UserServices us = new UserServices();
-        return us.FindTitreOffre(this.idoffre);
+    public String getIdoffre() throws SQLException {
+      //  UserServices us = new UserServices();
+        return OffreServices.getOffreById(idoffre).getTitre();
         
     }
     

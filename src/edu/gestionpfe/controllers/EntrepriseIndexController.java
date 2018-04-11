@@ -11,10 +11,6 @@ import static edu.gestionpfe.controllers.UserIndexController.rootP;
 import gestionpfe.NaivgationDrawer;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,15 +21,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.chart.LineChart;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -82,7 +70,7 @@ public class EntrepriseIndexController implements Initializable {
         if (!NaivgationDrawer.isSplashLoaded) {
             loadSplashScreen();
         }
-        label.setText("Connecté en tant que" + " " + usr.getNom());
+        label.setText("ConnectÃ© en tant que" + " " + usr.getNom());
         label.setStyle("-fx-text-inner-color: #9eca51");
 
         rootP = root;
@@ -110,28 +98,19 @@ public class EntrepriseIndexController implements Initializable {
                     }
                 });
             }
-            label.setText("Connecté en tant que" + " " + usr.getNom());
-            label.setStyle("-fx-text-inner-color: #9eca51");
-            
-            rootP = root;
-            containerP = container;
-            
-             afficheD.setOnAction(new EventHandler<ActionEvent>() {
-                 
-                @Override
-                public void handle(ActionEvent e) {
-                    
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            
-                            try {
-                                node =(AnchorPane) FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Demandes/ListDesDemandes.fxml"));
-                            } catch (IOException ex) {
-                                Logger.getLogger(EntrepriseIndexController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                                container.getChildren().setAll(node);
-                                    
+        });
+        AfficherAccepte.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        try {
+                            node = (AnchorPane) FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Demandes/ListeDesAccepte.fxml"));
+                        } catch (IOException ex) {
+                            Logger.getLogger(EntrepriseIndexController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         container.getChildren().setAll(node);
 
