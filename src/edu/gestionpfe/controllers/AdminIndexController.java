@@ -14,9 +14,12 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -41,6 +44,11 @@ public class AdminIndexController  implements Initializable{
     public  static  AnchorPane containerP;
     @FXML
     private Text label;
+    @FXML
+    private JFXButton b1;
+    public static AnchorPane pane;
+    @FXML
+    private JFXButton quit;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -51,7 +59,7 @@ public class AdminIndexController  implements Initializable{
             label.setText("Connecté en tant que Administrateur" );
             label.setStyle("-fx-text-inner-color: #9eca51");
             rootP=root;
-            containerP=container;
+            pane=container;
            
         
     }
@@ -92,6 +100,17 @@ public class AdminIndexController  implements Initializable{
             Logger.getLogger(EntrepriseIndexController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+
+    @FXML
+    private void encadrement(ActionEvent event) throws IOException {
+        Node node=FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/stages/liststages.fxml"));
+                                       pane.getChildren().setAll(node);
+    }
+
+    @FXML
+    private void quit(ActionEvent event) {
+        Platform.exit();
     }
     
 }

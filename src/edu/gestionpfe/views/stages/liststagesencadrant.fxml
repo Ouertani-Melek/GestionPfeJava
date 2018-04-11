@@ -8,27 +8,27 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="700.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.StageController.ListstagesEncadrantController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.StageController.ListstagesEncadrantController">
     <stylesheets>
         <URL value="@liststages.css" />
     </stylesheets>
    <children>
-      <TableView fx:id="listeStageEncadrant" layoutX="90.0" layoutY="46.0" prefHeight="243.0" prefWidth="520.0">
+      <TableView fx:id="listeStageEncadrant" layoutX="14.0" layoutY="46.0" prefHeight="243.0" prefWidth="627.0" stylesheets="@table.css">
         <columns>
-          <TableColumn fx:id="stage" prefWidth="100.0" text="stage" />
-          <TableColumn fx:id="entreprise" prefWidth="99.0" text="entreprise" />
-            <TableColumn fx:id="prenometudiant" prefWidth="183.0" text="prenom etudiant" />
-            <TableColumn fx:id="nometudiant" prefWidth="137.0" text="nom etudiant" />
+          <TableColumn fx:id="stage" prefWidth="135.0" text="stage" />
+          <TableColumn fx:id="entreprise" prefWidth="131.0" text="entreprise" />
+            <TableColumn fx:id="prenometudiant" prefWidth="199.0" text="prenom etudiant" />
+            <TableColumn fx:id="nometudiant" prefWidth="163.0" text="nom etudiant" />
         </columns>
       </TableView>
-      <Text fx:id="title" fill="RED" layoutX="215.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La liste des étudiant à encadrer" wrappingWidth="432.443359375">
+      <Text fx:id="title" fill="RED" layoutX="225.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La liste des étudiant à encadrer" wrappingWidth="432.443359375">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <ScrollPane fx:id="mypane" layoutX="87.0" layoutY="305.0">
+      <ScrollPane fx:id="mypane" layoutY="296.0" prefHeight="359.0" prefWidth="894.0">
          <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="340.0" prefWidth="520.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="355.0" prefWidth="834.0" />
          </content>
       </ScrollPane>
    </children>

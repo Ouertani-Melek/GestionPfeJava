@@ -6,6 +6,7 @@
 package edu.gestionpfe.services;
 
 import edu.gestionpfe.models.ConnectionToDataBase;
+import edu.gestionpfe.models.Stage;
 import edu.gestionpfe.models.User;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
@@ -172,6 +173,121 @@ public class UserServices {
             return false;
         }
     }
+    
+    public static Stage getStageByIdUser(int i) throws SQLException {
+        Connection connection = ConnectionToDataBase.getInstance().getConnection();
+        PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM stage where id = ? ");
+        pstmt.setInt(1, i);
+        ResultSet resultSet = pstmt.executeQuery();
+        if (resultSet == null) {
+            return new Stage();
+        } else {
+            Stage usr = new Stage();
+            while (resultSet.next()) {
+               
+                
+                usr.setId(resultSet.getInt("id"));
+                usr.setTitreStage(resultSet.getString("TitreStage"));
+               
+            }
+            return usr;
+        }
+    }
+    
+    public static User getNomByIdUser(int i) throws SQLException {
+        Connection connection = ConnectionToDataBase.getInstance().getConnection();
+        PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM user where id = ? ");
+        pstmt.setInt(1, i);
+        ResultSet resultSet = pstmt.executeQuery();
+        if (resultSet == null) {
+            return new User();
+        } else {
+            User usr = new User();
+            while (resultSet.next()) {
+                String pass = resultSet.getString("password");
+                usr.setPassword(pass);
+                usr.setAge(resultSet.getString("age"));
+                usr.setNom(resultSet.getString("nom"));
+                usr.setCodePostal(resultSet.getString("code_postal"));
+                usr.setEnabled(resultSet.getBoolean("enabled"));
+                usr.setId(resultSet.getInt("id"));
+                usr.setNumTel(resultSet.getInt("numero_tel"));
+                usr.setImage(resultSet.getString("image"));
+                usr.setPrenom(resultSet.getString("prenom"));
+                usr.setRue(resultSet.getString("rue"));
+                usr.setUsername(resultSet.getString("username"));
+                usr.setVille(resultSet.getString("ville"));
+                usr.setConfirmer(resultSet.getBoolean("verifier"));
+            }
+            return usr;
+        }
+    }
+    
+    
+    public static User getMailByIdUser(int i) throws SQLException {
+        Connection connection = ConnectionToDataBase.getInstance().getConnection();
+        PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM user where id = ? ");
+        pstmt.setInt(1, i);
+        ResultSet resultSet = pstmt.executeQuery();
+        if (resultSet == null) {
+            return new User();
+        } else {
+            User usr = new User();
+            while (resultSet.next()) {
+                String pass = resultSet.getString("password");
+                usr.setPassword(pass);
+                usr.setAge(resultSet.getString("age"));
+                usr.setNom(resultSet.getString("nom"));
+                usr.setEmail(resultSet.getString("email"));
+
+                usr.setCodePostal(resultSet.getString("code_postal"));
+                usr.setEnabled(resultSet.getBoolean("enabled"));
+                usr.setId(resultSet.getInt("id"));
+                usr.setNumTel(resultSet.getInt("numero_tel"));
+                usr.setImage(resultSet.getString("image"));
+                usr.setPrenom(resultSet.getString("prenom"));
+                usr.setRue(resultSet.getString("rue"));
+                usr.setUsername(resultSet.getString("username"));
+                usr.setVille(resultSet.getString("ville"));
+                usr.setConfirmer(resultSet.getBoolean("verifier"));
+            }
+            return usr;
+        }
+    }
+    
+    
+    public static User getNomByIdNom(String string) throws SQLException {
+        Connection connection = ConnectionToDataBase.getInstance().getConnection();
+        PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM user where nom = ? ");
+        pstmt.setString(1, string);
+        ResultSet resultSet = pstmt.executeQuery();
+        if (resultSet == null) {
+            return new User();
+        } else {
+            User usr = new User();
+            while (resultSet.next()) {
+                String pass = resultSet.getString("password");
+                usr.setPassword(pass);
+                usr.setAge(resultSet.getString("age"));
+                usr.setNom(resultSet.getString("nom"));
+                usr.setCodePostal(resultSet.getString("code_postal"));
+                usr.setEnabled(resultSet.getBoolean("enabled"));
+                usr.setId(resultSet.getInt("id"));
+                usr.setNumTel(resultSet.getInt("numero_tel"));
+                usr.setImage(resultSet.getString("image"));
+                usr.setPrenom(resultSet.getString("prenom"));
+                usr.setRue(resultSet.getString("rue"));
+                usr.setUsername(resultSet.getString("username"));
+                usr.setVille(resultSet.getString("ville"));
+                usr.setConfirmer(resultSet.getBoolean("verifier"));
+            }
+            return usr;
+        }
+    }
+    
+    
+    
+    
 
     public static ImageView getUserImage(User user) throws Exception {
         if(user.getImage().contains(" "))
@@ -220,4 +336,20 @@ public class UserServices {
             return usr;
         }
     }
+    public static int Totalencad(int id) throws SQLException{
+            int i=0;
+            ResultSet resultSet = null;
+        Connection connection = ConnectionToDataBase.getInstance().getConnection();
+        PreparedStatement pstmt = connection.prepareStatement("SELECT COUNT(*) AS total FROM stage where idencadrant = ?");
+        pstmt.setInt(1, id);
+        resultSet = pstmt.executeQuery();
+        while(resultSet.next()){
+                  i=  resultSet.getInt("total");                    
+                }
+            
+            
+            return i;
+    }
+    
+    
 }

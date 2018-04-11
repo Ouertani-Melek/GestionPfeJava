@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="870.0" style="-fx-background-color: #080808;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.StageController.AjoutertacheController">
+    <stylesheets>
+        <URL value="@ajoutertache.css" />
+    </stylesheets>
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="870.0" opacity="0.24" pickOnBounds="true">
+         <image>
+            <Image url="@../images/backgrounds/404-bg_1.jpg" />
+         </image>
+      </ImageView>
+      <Text fx:id="tit" fill="RED" layoutX="277.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Saisir le titre de la tache à ajouter" wrappingWidth="415.822265625">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="tache" layoutX="241.0" layoutY="110.0" prefHeight="134.0" prefWidth="387.0" promptText="Ajouter Une nouvelle Tache..." style="-fx-background-color: #ffff;">
+         <font>
+            <Font name="System Italic" size="16.0" />
+         </font></TextField>
+      <Button fx:id="ajoutertache" layoutX="341.0" layoutY="261.0" mnemonicParsing="false" onAction="#ajouterTaches" prefHeight="68.0" prefWidth="187.0" style="-fx-background-color: linear-gradient(#f0ff35, #a9ff00),radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%); -fx-background-radius: 6, 5; -fx-background-insets: 0,1; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 ); -fx-text-fill: #395306;" text="Ajouter">
+         <font>
+            <Font name="System Italic" size="22.0" />
+         </font></Button>
+   </children>
+</AnchorPane>
