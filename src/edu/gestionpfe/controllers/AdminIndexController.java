@@ -97,7 +97,7 @@ public class AdminIndexController  implements Initializable{
             });
 
         } catch (IOException ex) {
-            Logger.getLogger(EntrepriseIndexController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
         
     }
@@ -105,7 +105,7 @@ public class AdminIndexController  implements Initializable{
     @FXML
     private void encadrement(ActionEvent event) throws IOException {
         Node node=FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/stages/liststages.fxml"));
-                                       pane.getChildren().setAll(node);
+                                       container.getChildren().setAll(node);
     }
 
     @FXML
@@ -116,12 +116,14 @@ public class AdminIndexController  implements Initializable{
     @FXML
     private void allsoutenance(ActionEvent event) throws IOException {
        try {
-                   FXMLLoader root = new FXMLLoader(getClass().getResource("/edu/gestionpfe/views/Soutenance/affectationPresident.fxml"));
-                    AnchorPane x = root.load();
-                    AffectationPresidentController c = root.getController();
-
-                    pane.getChildren().clear();
-                    pane.getChildren().add((Node) x);
+//                   FXMLLoader root = new FXMLLoader(getClass().getResource("/edu/gestionpfe/views/Soutenance/affectationPresident.fxml"));
+//                    AnchorPane x = root.load();
+//                    AffectationPresidentController c = root.getController();
+//
+//                    containerP.getChildren().clear();
+//                    containerP.getChildren().add((Node) x);
+ Node node=FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Soutenance/affectationPresident.fxml"));
+                                       pane.getChildren().setAll(node);
                 } catch (IOException ex) {
                     Logger.getLogger(SoutenanceController.class.getName()).log(Level.SEVERE, null, ex);
                 }
