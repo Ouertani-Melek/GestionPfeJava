@@ -48,6 +48,9 @@ import javafx.scene.paint.Paint;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.controlsfx.control.textfield.TextFields;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -448,7 +451,7 @@ public class RemplirCvController implements Initializable {
             CentresInterets cen1 = new CentresInterets();
             if (formation.getText() != "" && isValidName(formation.getText()) && dateFormation.getValue() != null
                     && centres.getValue() != null && tech.getText() != null && level.getValue() != null
-                    && langue.getValue() != null && niveau.getValue() != null) {
+                    && langue.getValue() != null && niveau.getValue() != null ) {
                 
                 services.ajouterCv(cv1);
                 
@@ -657,7 +660,12 @@ public class RemplirCvController implements Initializable {
 
 //                   CentreContent.stream().forEach(e-> System.out.println(e->get));
                 }
+                if( verif==true&& verifcentre==true&&veriflangue==true
+                            
+                            &&veriftech==true)
+                {
                 Node node = null;
+                
                 node = (StackPane) FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Cv/afficherCv.fxml"));
                 FadeTransition ft = new FadeTransition(Duration.seconds(5), node);
                 ft.setFromValue(0.0);
@@ -665,11 +673,40 @@ public class RemplirCvController implements Initializable {
                 ft.play();
                 
                 containerP.getChildren().setAll(node);
+                TrayNotification tray = new TrayNotification();
+                 tray.setTitle("Gestion PFE Ajout CV");
+            tray.setMessage("Voir Votre Cv !");
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.setAnimationType(AnimationType.SLIDE);
+            tray.showAndDismiss(Duration.seconds(5));
+                }
+                if(verif=true)
+                {
+                Node node = null;
                 
+                node = (StackPane) FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Cv/afficherCv.fxml"));
+                FadeTransition ft = new FadeTransition(Duration.seconds(5), node);
+                ft.setFromValue(0.0);
+                ft.setToValue(1.0);
+                ft.play();
+                
+                containerP.getChildren().setAll(node);
+                 TrayNotification tray = new TrayNotification();
+                 tray.setTitle("Gestion PFE Ajout CV");
+            tray.setMessage("Voir Votre Cv !");
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.setAnimationType(AnimationType.SLIDE);
+            tray.showAndDismiss(Duration.seconds(5));
+                }
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Vous devez remplir au moins un des champs pour chaque categories! ", ButtonType.OK);
                 alert.initStyle(StageStyle.UNDECORATED);
-                
+                 TrayNotification tray = new TrayNotification();
+            tray.setTitle("Gestion PFE Ajout CV");
+            tray.setMessage("Essayez Encore et cliquer sur Mon Cv aprés!");
+            tray.setNotificationType(NotificationType.ERROR);
+            tray.setAnimationType(AnimationType.SLIDE);
+            tray.showAndDismiss(Duration.seconds(10));
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK) {
                     

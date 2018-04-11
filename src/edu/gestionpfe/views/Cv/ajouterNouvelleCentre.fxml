@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="369.0" prefWidth="453.0" styleClass="mainFxmlClass" stylesheets="@../Demandes/Progress.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.CVControllers.AjouterNouvelleCentreController">
+   <children>
+      <Text fill="#ffff8d" layoutX="74.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un nouveau centre d'interet" textAlignment="CENTER" wrappingWidth="304.62109375">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <JFXComboBox fx:id="centre" focusColor="#ffff8d" labelFloat="true" layoutX="98.0" layoutY="160.0" prefHeight="49.0" prefWidth="257.0" promptText="Centre d'interet" stylesheets="@../Demandes/Progress.css" unFocusColor="#ffff8d" />
+      <JFXButton layoutX="120.0" layoutY="303.0" onAction="#NouvelleCompetence" prefHeight="32.0" prefWidth="146.0" text="Ajouter" />
+      <JFXButton layoutX="297.0" layoutY="303.0" onAction="#quitter" prefHeight="32.0" prefWidth="146.0" text="Quitter" />
+   </children>
+</AnchorPane>
