@@ -30,6 +30,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -95,6 +96,13 @@ private final static int WIDTH = 500;
     private JFXButton acc;
     @FXML
     private JFXButton refu;
+    @FXML
+    private JFXButton AssistantChibani;
+
+    public JFXButton getAssistantChibani() {
+        return AssistantChibani;
+    }
+    
     /**
      * Initializes the controller class.
      */
@@ -103,7 +111,11 @@ private final static int WIDTH = 500;
 //                 if(verification==1){
 //                 acc.setVisible(false);
 //                 }
-        try {
+
+            Tooltip chi=new Tooltip("Assisstance disponible pour fixer une date d'entretien dans le cas ou le candidat est favorable !");
+       Tooltip.install(AssistantChibani, chi);
+            
+            try {
             ImageView img;
             User usr = UserServices.selectUserById(idU);
             
@@ -347,6 +359,58 @@ diag.show();
         dialog.close();
         dialog=new Stage();
         
+    }
+
+    @FXML
+    private void ChibaniPlayWithJava() throws IOException, SQLException {
+                DemandesServices chibaniDemande=new DemandesServices();
+                if(chibaniDemande.ChibaniIA()>=50.0)
+                {
+                try {
+                    AnchorPane node = (AnchorPane) FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Demandes/ChibaniAssisstant.fxml"));
+                    Stage dia = new Stage();
+                    
+                    dia.initOwner((Stage) CvAnchorPane.getScene().getWindow());
+                    dia.initModality(Modality.APPLICATION_MODAL);
+                    dia.initStyle(StageStyle.TRANSPARENT);
+                    Scene scene = new Scene(node);
+                    dia.setScene(scene);
+                    
+                    dia.show();
+                    
+                    //close this stage
+                    PauseTransition delay = new PauseTransition(Duration.seconds(12));
+                    delay.setOnFinished(event -> dia.close());
+                    delay.play();
+                    // System.out.println("Affichage user"+PDFAccepte.toString());
+                    
+                    
+                    TrayNotification tra = new TrayNotification();
+                    tra.setTitle("Gestion PFE CHIBANI ASSISSTANT");
+                    tra.setMessage("Bienvenue! Le Traitement est En cours.. ");
+                    tra.setNotificationType(NotificationType.INFORMATION);
+                    tra.setAnimationType(AnimationType.SLIDE);
+                    tra.showAndDismiss(Duration.seconds(11));
+                } catch (IOException ex) {
+                    Logger.getLogger(EntrepriseCvController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                }
+                else{
+                
+                TrayNotification tra = new TrayNotification();
+                    tra.setTitle("Gestion PFE CHIBANI ASSISSTANT");
+                    tra.setMessage("Bienvenue! Le pourcentage de succés de Candidat est inferieur a 50%");
+                    tra.setNotificationType(NotificationType.WARNING);
+                    tra.setAnimationType(AnimationType.SLIDE);
+                    tra.showAndDismiss(Duration.seconds(11));
+                    dialog.close();
+                    dialog=new Stage();
+                    AssistantChibani.setVisible(false);
+                
+                }
+
+           
+       
     }
     
 }

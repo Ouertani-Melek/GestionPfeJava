@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="359.0" prefWidth="453.0" styleClass="mainFxmlClass" stylesheets="@../Demandes/Progress.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.CVControllers.AjouterNouvelleFormationController">
+   <children>
+      <JFXTextField fx:id="NouvelleFormation" labelFloat="true" layoutX="99.0" layoutY="106.0" prefHeight="32.0" prefWidth="257.0" promptText="La formation" stylesheets="@../Demandes/Progress.css" unFocusColor="#ffff8d" />
+      <Text fill="#ffff8d" layoutX="82.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter une nouvelle formation" wrappingWidth="291.62109375">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <JFXDatePicker fx:id="NouvelleDate" defaultColor="#c2ff8f" editable="false" layoutX="106.0" layoutY="190.0" prefHeight="25.0" prefWidth="257.0" promptText="La date de la formation" />
+      <JFXButton fx:id="ajoutfo" layoutX="69.0" layoutY="293.0" prefHeight="32.0" prefWidth="146.0" text="Ajouter" />
+      <JFXButton layoutX="301.0" layoutY="293.0" onAction="#quitter" prefHeight="32.0" prefWidth="146.0" text="Quitter" />
+   </children>
+</AnchorPane>

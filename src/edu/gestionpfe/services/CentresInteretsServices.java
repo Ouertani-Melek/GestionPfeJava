@@ -41,6 +41,19 @@ public class CentresInteretsServices {
             }
         }
     }
+    public void AjouterCentreUnique(CentresInterets l) throws SQLException{
+     Connection connection = ConnectionToDataBase.getInstance().getConnection();
+             
+             String sql = "INSERT INTO centres_interets"
+                     + "(idcv,centreInteret) VALUES"
+                     + "(?,?)";
+              PreparedStatement pst = connection.prepareStatement(sql);
+                pst.setInt(1, l.getIdCv());
+                pst.setString(2, l.getCentreInteret());
+                
+
+                pst.execute();
+    }
 public List<CentresInterets> AfficherCentre(int id) {
          List<CentresInterets> centre=new ArrayList<>();
          

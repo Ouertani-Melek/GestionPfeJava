@@ -5,6 +5,9 @@
  */
 package edu.gestionpfe.services;
 
+import static edu.gestionpfe.controllers.DemandeControllers.ListDesDemandesController.idOffreChibani;
+import static edu.gestionpfe.controllers.DemandeControllers.ListDesDemandesController.idU;
+import edu.gestionpfe.models.CompetencesTechniques;
 import edu.gestionpfe.models.ConnectionToDataBase;
 import edu.gestionpfe.models.Demandes;
 import edu.gestionpfe.models.Offre;
@@ -14,8 +17,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,6 +34,19 @@ import java.util.logging.Logger;
  */
 public class DemandesServices {
 //public static List<Time> TimeEntretien=new ArrayList<>();   
+    public List<Offre> DeadOffres=new ArrayList<>();
+    public List<String> Dead=new ArrayList<>();
+    private LocalDateTime finalDate;
+    private long randomEpochDay;
+    private long randomEpochTime;
+    private LocalDate startDate;
+    private LocalTime startTime;
+    private long startTim;
+    private long start;
+    private LocalDate endDate;
+    private LocalTime endTime;
+    private long endTim;
+    private long end;
 
     public List<Demandes> AfficherDemande() {
         List<Demandes> demandes = new ArrayList<>();
@@ -64,8 +86,14 @@ public class DemandesServices {
                     if (e.getIdOffre() == s) {
                         demandesEntre.add(e);
                         lofrres.add(of);
+                        Date today = new Date();
+                         long diff = today.getTime() - of.getDateCreation().getTime();
+                        if((diff / (1000 * 60 * 60 * 24))>60)
+                            DeadOffres.add(of);
+                    
                     } else {
                         lof.remove(e);
+                        
                     }
                 });
                 break;
@@ -76,6 +104,7 @@ public class DemandesServices {
                 lofrres.forEach(o -> e.settitreOffrePrDemande(o.getId()));
 
             });
+            
 
         } catch (SQLException ex) {
             System.out.println("Affichage annulé\n" + ex.getMessage());
@@ -145,6 +174,7 @@ public class DemandesServices {
     public void ajouterEntretien(int id, Timestamp d, String meth) throws SQLException {
         Connection connection = ConnectionToDataBase.getInstance().getConnection();
         String sql = "update demandes set etatDemande=1 , dateEntretien=? , methodeCommunication=? where id=" + id;
+        //System.out.println("id demanaaaaaaaaaaaaaaaaaaaaaaaaade :"+id);
 
         PreparedStatement pst = connection.prepareStatement(sql);
         pst.setTimestamp(1, d);
@@ -232,44 +262,9 @@ public class DemandesServices {
         return datesEntretiens;
     }
 
-//    public Boolean getEtatEnt(int id){
-//     Boolean b = null;
-//        try {
-//       
-//        
-//        Connection connection = ConnectionToDataBase.getInstance().getConnection();
-//        String req="SELECT `etatEntretien` FROM `demandes` WHERE id=?";
-//        
-//        
-//        
-//        PreparedStatement pst = connection.prepareStatement(req);
-//        pst.setInt(1, id);
-//        ResultSet rs=pst.executeQuery();
-//        while(rs.next())
-//        {
-//            switch (rs.getInt("etatEntretien")) {
-//                case 0:
-//                    
-//                    b=false;
-//                    break;
-//                case 1:
-//                    b=true;
-//                    break;
-//                default:
-//                    b=null;
-//                    break;
-//            }
-//        }
-//        
-//       
-//    } catch (SQLException ex) {
-//        Logger.getLogger(DemandesServices.class.getName()).log(Level.SEVERE, null, ex);
-//    }
-//        System.out.println(b);
-//     return b;
-//    }
     private int idOff;
     private int idUs;
+    private float cnt;
 
     public User selectPdfEntreprise(int id) throws SQLException {
         User us = new User();
@@ -308,4 +303,109 @@ public class DemandesServices {
         return us;
     }
 
+    public float ChibaniIA() throws SQLException {
+        CompetencesTechniquesServices cts = new CompetencesTechniquesServices();
+        int idcv = CvServices.CVIdentifiant(idU);
+        List<CompetencesTechniques> techEtudiant = new ArrayList<>();
+        List<String> techEtu = new ArrayList<>();
+        List<String> techOffres = new ArrayList<>();
+        techEtudiant = cts.AfficherTechs(idcv);
+
+        String req = "select tech from technolgies where idoffre=?";
+        Connection connection = ConnectionToDataBase.getInstance().getConnection();
+        PreparedStatement pst = connection.prepareStatement(req);
+        pst.setInt(1, idOffreChibani);
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            techOffres.add(rs.getString("tech"));
+
+        }
+        for (CompetencesTechniques ct : techEtudiant) {
+            techEtu.add(ct.getCompetence());
+        }
+
+        techEtu.stream().forEach(e -> {
+            for (String te : techOffres) {
+                if (te.equalsIgnoreCase(e)) {
+                    cnt++;
+                }
+
+            }
+//                cnt=Collections.frequency(techOffres, e);
+        });
+
+        float percent = (cnt / (float) techOffres.size()) * 100;
+
+        return percent;
+    }
+
+    public LocalDateTime ChibaniIDDateEntretien() throws SQLException {
+        startDate = LocalDate.now(); //start date
+        startTime = LocalTime.of(8, 30);
+        startTim = startTime.toSecondOfDay();
+        List<LocalDateTime> datesEntretiens = new ArrayList<>();
+        start = startDate.toEpochDay();
+        //System.out.println(start+":"+startTim);
+
+        endDate = LocalDate.of(2018, Month.MAY, 31); //end date
+        endTime = LocalTime.of(15, 00);
+        endTim = endTime.toSecondOfDay();
+        end = endDate.toEpochDay();
+        //System.out.println(start+":"+startTim);
+
+        randomEpochDay = ThreadLocalRandom.current().longs(start, end).findAny().getAsLong();
+        randomEpochTime = ThreadLocalRandom.current().longs(startTim, endTim).findAny().getAsLong();
+        //System.out.println("La Date est :"+LocalDate.ofEpochDay(randomEpochDay)+":"+LocalTime.ofSecondOfDay(randomEpochTime)); // random date between the range
+        finalDate = LocalDateTime.of(LocalDate.ofEpochDay(randomEpochDay), LocalTime.ofSecondOfDay(randomEpochTime));
+        //System.out.println(finalDate);
+
+        Connection connection = ConnectionToDataBase.getInstance().getConnection();
+        String sql = "SELECT `dateEntretien` FROM `demandes` WHERE `dateEntretien` is NOT NULL AND `idoffre`=?";
+        PreparedStatement pst = connection.prepareStatement(sql);
+        pst.setInt(1, idOffreChibani);
+        ResultSet rs = pst.executeQuery();
+//           while(rs.next()){
+//               datesEntretiens.add(rs.getDate("dateEntretien"));
+//               System.out.println(rs.getDate("dateEntretien"));
+//           }
+        while (rs.next()) {
+            LocalTime dbSqlTime = rs.getTime("dateEntretien").toLocalTime();
+            LocalDate dbSqlDate = rs.getDate("dateEntretien").toLocalDate();
+//                java.sql. dbSqlTimestamp = rs.getTimestamp("dateEntretien");
+            LocalDateTime dateBD = LocalDateTime.of(dbSqlDate.getYear(), dbSqlDate.getMonth(), dbSqlDate.getDayOfMonth(), dbSqlTime.getHour(),
+                    dbSqlTime.getMinute(), dbSqlTime.getMinute());
+            //System.out.println(dateBD);
+            // System.out.println(dbSqlTime);
+            //System.out.println(dbSqlDate);
+            //TimeEntretien.add(dbSqlTime);
+            datesEntretiens.add(dateBD);
+
+        }
+        datesEntretiens.stream().forEach(e -> {
+            if (e.equals(finalDate)) {
+
+                randomEpochDay = ThreadLocalRandom.current().longs(start, end).findAny().getAsLong();
+                randomEpochTime = ThreadLocalRandom.current().longs(startTim, endTim).findAny().getAsLong();
+                //System.out.println("La Date est :"+LocalDate.ofEpochDay(randomEpochDay)+":"+LocalTime.ofSecondOfDay(randomEpochTime)); // random date between the range
+                finalDate = LocalDateTime.of(LocalDate.ofEpochDay(randomEpochDay), LocalTime.ofSecondOfDay(randomEpochTime));
+
+            }
+
+        });
+        System.out.println(finalDate);
+        return finalDate;
+
+    }
+    public List<String> findDeadOffre(){
+        AfficherDemande();
+        System.out.println("hani lahnéééé");
+        DeadOffres.stream().forEach(e->{
+                 Dead.add(FindTitreOffre(e.getId()));
+                 System.out.println(FindTitreOffre(e.getId()));
+            });
+        
+        return Dead;
+    
+    }
+    
 }

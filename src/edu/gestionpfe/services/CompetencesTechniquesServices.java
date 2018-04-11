@@ -101,4 +101,18 @@ public class CompetencesTechniquesServices {
              Logger.getLogger(FormationServices.class.getName()).log(Level.SEVERE, null, ex);
          }
      }
+
+    public void AjouterCompetenceUnique(CompetencesTechniques l) throws SQLException {
+       Connection connection = ConnectionToDataBase.getInstance().getConnection();
+             
+             String sql = "INSERT INTO competences_techniques"
+                + "(idcv,competence,level) VALUES"
+                + "(?,?,?)";
+              PreparedStatement pst = connection.prepareStatement(sql);
+                pst.setInt(1, l.getIdCv());
+                pst.setString(2, l.getCompetence());
+                pst.setString(3, l.getLevel());
+
+                pst.execute();
+    }
 }
