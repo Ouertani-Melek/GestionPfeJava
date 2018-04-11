@@ -15,12 +15,12 @@
          <children>
             <VBox opacity="0.7" prefHeight="650.0" prefWidth="149.0" styleClass="toolbar-container" stylesheets="@../Cv/affichercv.css">
                <children>
-                  <JFXButton contentDisplay="TOP" mnemonicParsing="false" prefHeight="400.0" prefWidth="160.0" styleClass="toolbar-button" text="Ajouter Offre" textAlignment="CENTER">
+                  <JFXButton fx:id="ajouterOffres" contentDisplay="TOP" mnemonicParsing="false" prefHeight="400.0" prefWidth="160.0" styleClass="toolbar-button" text="Ajouter Offre" textAlignment="CENTER">
                      <graphic>
                         <FontAwesomeIconView glyphName="USER" size="25" />
                      </graphic>
                   </JFXButton>
-                  <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="400.0" prefWidth="160.0" styleClass="toolbar-button" text="Mes Offres" textAlignment="CENTER">
+                  <JFXButton fx:id="mesOffre" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="400.0" prefWidth="160.0" styleClass="toolbar-button" text="Mes Offres" textAlignment="CENTER">
                      <graphic>
                         <FontAwesomeIconView glyphName="BOOK" size="25" />
                      </graphic>
@@ -40,7 +40,7 @@
                         <FontAwesomeIconView glyphName="CHECK" size="25" textAlignment="CENTER" />
                      </graphic>
                   </JFXButton>
-                  <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="223.0" mnemonicParsing="false" prefHeight="145.0" prefWidth="154.0" styleClass="toolbar-button" text="Quitter" textAlignment="CENTER">
+                  <JFXButton fx:id="quitter" contentDisplay="TOP" layoutX="10.0" layoutY="223.0" mnemonicParsing="false" prefHeight="145.0" prefWidth="154.0" styleClass="toolbar-button" text="Quitter" textAlignment="CENTER">
                      <graphic>
                         <FontAwesomeIconView glyphName="COG" size="25" />
                      </graphic>
