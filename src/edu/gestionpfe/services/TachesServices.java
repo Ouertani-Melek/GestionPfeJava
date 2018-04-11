@@ -5,7 +5,10 @@
  */
 package edu.gestionpfe.services;
 
+import static edu.gestionpfe.controllers.ConnectionController.usr;
 import edu.gestionpfe.models.ConnectionToDataBase;
+import edu.gestionpfe.models.Demandes;
+import edu.gestionpfe.models.EtudiantDemandes;
 import edu.gestionpfe.models.Tache;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -64,6 +67,28 @@ public class TachesServices {
         }
         
     }
+    
+    
+     public List<EtudiantDemandes> selectAllAccept() {
+        List<EtudiantDemandes> demandes=new ArrayList<EtudiantDemandes>();
+        String req="select * from demandes where iduser="+usr.getId();
+        
+        Connection connection = ConnectionToDataBase.getInstance().getConnection();
+        try {
+            Statement statement=connection.createStatement();
+            ResultSet resultSet =statement.executeQuery(req);
+            while(resultSet.next()){
+                EtudiantDemandes p;
+                p = new EtudiantDemandes(resultSet.getInt(1),resultSet.getInt(2),resultSet.getInt(3),resultSet.getBoolean(4),resultSet.getDate(5),resultSet.getBoolean(6),resultSet.getBoolean(7));
+                demandes.add(p);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StagesServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return demandes;
+    }
+    
     
     
     
