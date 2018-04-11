@@ -112,5 +112,21 @@ public class AdminIndexController  implements Initializable{
     private void quit(ActionEvent event) {
         Platform.exit();
     }
+
+    @FXML
+    private void allsoutenance(ActionEvent event) throws IOException {
+       try {
+                   FXMLLoader root = new FXMLLoader(getClass().getResource("/edu/gestionpfe/views/Soutenance/affectationPresident.fxml"));
+                    AnchorPane x = root.load();
+                    AffectationPresidentController c = root.getController();
+
+                    pane.getChildren().clear();
+                    pane.getChildren().add((Node) x);
+                } catch (IOException ex) {
+                    Logger.getLogger(SoutenanceController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        
+        
+    }
     
 }
