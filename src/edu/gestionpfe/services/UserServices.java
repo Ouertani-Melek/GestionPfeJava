@@ -53,6 +53,7 @@ import org.json.JSONObject;
  */
 public class UserServices {
 
+    
     public static User selectUser(String username) throws SQLException {
         ResultSet resultSet = null;
         Connection connection = ConnectionToDataBase.getInstance().getConnection();
@@ -350,6 +351,92 @@ public class UserServices {
             
             return i;
     }
+    
+    
+     public List<User> profs() {
+      List<User> et= new ArrayList<>();
+         try {
+              Connection connection = ConnectionToDataBase.getInstance().getConnection();
+        PreparedStatement stm = connection.prepareStatement("SELECT * FROM `user` WHERE roles LIKE \"%ROLE_ENSEIGNANT%\" ");
+            
+           
+            ResultSet rest = stm.executeQuery();
+            while (rest.next()) {
+                  User e1 = new User();
+                e1.setId(rest.getInt("id"));
+                e1.setNom(rest.getString("nom"));
+                e1.setPrenom(rest.getString("prenom"));
+                
+              et.add(e1);
+                
+                
+            }
+
+        } catch (SQLException ex) {
+             System.out.println(ex.getMessage());
+        }
+        return et;
+        
+    
+}
+          public List<User> etudiant() {
+      List<User> et= new ArrayList<>();
+         try {
+             Connection connection = ConnectionToDataBase.getInstance().getConnection();
+        PreparedStatement stm = connection.prepareStatement("SELECT * FROM `user` WHERE roles LIKE \"%ROLE_ETUDIANT%\" ");
+          //  String query = "SELECT * FROM `user` WHERE roles LIKE \"%ROLE_ETUDIANT%\" ";
+            
+           
+            ResultSet rest = stm.executeQuery();
+            while (rest.next()) {
+                  User e1 = new User();
+                e1.setId(rest.getInt("id"));
+                e1.setNom(rest.getString("nom"));
+                e1.setPrenom(rest.getString("prenom"));
+                
+              et.add(e1);
+                
+                
+            }
+
+        } catch (SQLException ex) {
+             System.out.println(ex.getMessage());
+        }
+        return et;
+        
+    
+}
+       public static User getNomByIdNom(String nom,String prenom) throws SQLException {
+        Connection connection = ConnectionToDataBase.getInstance().getConnection();
+        PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM user where nom = ? and prenom = ? ");
+        pstmt.setString(1, nom);
+        pstmt.setString(2, prenom);
+        ResultSet resultSet = pstmt.executeQuery();
+        if (resultSet == null) {
+            return new User();
+        } else {
+            User usr = new User();
+            while (resultSet.next()) {
+                String pass = resultSet.getString("password");
+                usr.setPassword(pass);
+                usr.setAge(resultSet.getString("age"));
+                usr.setNom(resultSet.getString("nom"));
+                usr.setEmail(resultSet.getString("email"));
+                usr.setCodePostal(resultSet.getString("code_postal"));
+                usr.setEnabled(resultSet.getBoolean("enabled"));
+                usr.setId(resultSet.getInt("id"));
+                usr.setNumTel(resultSet.getInt("numero_tel"));
+                usr.setImage(resultSet.getString("image"));
+                usr.setPrenom(resultSet.getString("prenom"));
+                usr.setRue(resultSet.getString("rue"));
+                usr.setUsername(resultSet.getString("username"));
+                usr.setVille(resultSet.getString("ville"));
+             
+            }
+            return usr;
+        }
+    }
+        
     
     
 }
