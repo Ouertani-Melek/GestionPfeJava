@@ -24,6 +24,7 @@ import edu.gestionpfe.services.CompetencesTechniquesServices;
 import edu.gestionpfe.services.CvServices;
 import edu.gestionpfe.services.FormationServices;
 import edu.gestionpfe.services.languesServices;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -56,8 +57,13 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.ScrollPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.controlsfx.control.textfield.TextFields;
 
 /**
@@ -106,8 +112,6 @@ public class AfficherCvController implements Initializable {
     @FXML
     private StackPane bookInfoContainer11;
     @FXML
-    private Text LanguesEtNiveau;
-    @FXML
     private Tab bookIssueTab111;
     @FXML
     private HBox member_info111;
@@ -115,10 +119,6 @@ public class AfficherCvController implements Initializable {
     private JFXTextField memberIDInput111;
     @FXML
     private StackPane memberInfoContainer111;
-    @FXML
-    private Text memberName111;
-    @FXML
-    private Text memberMobile111;
     @FXML
     private Tab bookIssueTab2;
     @FXML
@@ -128,7 +128,7 @@ public class AfficherCvController implements Initializable {
     @FXML
     private Text EmailUser;
     @FXML
-    private VBox FormationContent;
+    public VBox FormationContent;
     @FXML
     private Tab bookIssueTab1;
     @FXML
@@ -143,6 +143,14 @@ public class AfficherCvController implements Initializable {
     private ScrollPane scrollformation;
     @FXML
     private ScrollPane scrollLangue;
+    
+    
+    public static List<String> lfa;
+    public static List<String> ltec;
+    public static List<String> llangu;
+    public static List<String> lcentr;
+  
+    public static int IdExistant;
 
     /**
      * Initializes the controller class.
@@ -167,7 +175,7 @@ scrollformation.getStyleClass().add("scroll-pane");
         languesServices Lang = new languesServices();
         CentresInteretsServices cenSer = new CentresInteretsServices();
         CompetencesTechniquesServices techSer = new CompetencesTechniquesServices();
-        int IdExistant = 0;
+        
 
         try {
             IdExistant = CvServices.CVID();
@@ -179,6 +187,8 @@ scrollformation.getStyleClass().add("scroll-pane");
         int i = 0;
         List<Formation> listeForm = formSer.AfficherFormation(IdExistant);
         List<String> lf = new ArrayList<>();
+        lfa=lf;
+        
         listeForm.stream().forEach(e -> lf.add(e.getFormation()));
         for (Formation f : listeForm) {
             i++;
@@ -304,6 +314,7 @@ scrollformation.getStyleClass().add("scroll-pane");
             formationDate.setId(Integer.toString(f.getId()));
             formationDate.getStyleClass().add("main-text");
             FormationContent.getChildren().addAll(label, formation, formationDate);
+          
             //  FormationContent.getChildren().add(formationDate);
             // texts.add(formationDate);
 
@@ -312,7 +323,7 @@ scrollformation.getStyleClass().add("scroll-pane");
         int j = 0;
         List<Langues> LesLangues = Lang.AfficherLangue(IdExistant);
         List<String> lg = new ArrayList<>();
-
+         
         LesLangues.stream().forEach(e -> lg.add(e.getLangue()));
         for (Langues l : LesLangues) {
             j++;
@@ -454,6 +465,7 @@ scrollformation.getStyleClass().add("scroll-pane");
             LanguesContent.getChildren().addAll(label, langue, niv);
 
         }
+        llangu=lg;
 
         int c = 0;
         List<CentresInterets> lc=cenSer.AfficherCentre(IdExistant);
@@ -554,7 +566,7 @@ scrollformation.getStyleClass().add("scroll-pane");
             centresContent.getChildren().addAll(label, centre);
 
         }
-
+            lcentr=AllCent;
         int k = 0;
         int level = 0;
 
@@ -800,7 +812,77 @@ scrollformation.getStyleClass().add("scroll-pane");
             techsContent.getChildren().addAll(label, tech, techlevel);
 
         }
+        ltec=alltech;
 
+    }
+    public static Stage dialogueFormation = new Stage();
+    public static Stage dialogueCompetence = new Stage();
+    public static Stage dialogueLangue = new Stage();
+    public static Stage dialogueCentre = new Stage();
+
+   
+
+    @FXML
+    private void newt(ActionEvent event) throws IOException {
+        AnchorPane node= FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Cv/ajouterNouvelleCompetence.fxml"));
+                            
+                      
+                        dialogueCompetence.initOwner((Stage) rootPane.getScene().getWindow());
+                        dialogueCompetence.initModality(Modality.APPLICATION_MODAL);
+                        dialogueCompetence.initStyle(StageStyle.TRANSPARENT);
+  
+                        Scene scene = new Scene( node);
+                        dialogueCompetence.setScene(scene);
+                     
+                        dialogueCompetence.show();
+    }
+
+    @FXML
+    private void newcc(ActionEvent event) throws IOException {
+        AnchorPane node= FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Cv/ajouterNouvelleCentre.fxml"));
+                            
+                      
+                        dialogueCentre.initOwner((Stage) rootPane.getScene().getWindow());
+                        dialogueCentre.initModality(Modality.APPLICATION_MODAL);
+                        dialogueCentre.initStyle(StageStyle.TRANSPARENT);
+  
+                        Scene scene = new Scene( node);
+                        dialogueCentre.setScene(scene);
+                     
+                        dialogueCentre.show();
+    }
+ 
+    @FXML
+    private void newForm(ActionEvent event) throws IOException {
+        
+        
+         AnchorPane node= FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Cv/ajouterNouvelleFormation.fxml"));
+                            
+                      
+                        dialogueFormation.initOwner((Stage) rootPane.getScene().getWindow());
+                        dialogueFormation.initModality(Modality.APPLICATION_MODAL);
+                        dialogueFormation.initStyle(StageStyle.TRANSPARENT);
+  
+                        Scene scene = new Scene( node);
+                        dialogueFormation.setScene(scene);
+                     
+                        dialogueFormation.show();
+    }
+        
+    @FXML
+    private void newLang(ActionEvent event) throws IOException {
+        
+        AnchorPane node= FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Cv/ajouterNouvelleLangue.fxml"));
+                            
+                      
+                        dialogueLangue.initOwner((Stage) rootPane.getScene().getWindow());
+                        dialogueLangue.initModality(Modality.APPLICATION_MODAL);
+                        dialogueLangue.initStyle(StageStyle.TRANSPARENT);
+  
+                        Scene scene = new Scene( node);
+                        dialogueLangue.setScene(scene);
+                     
+                        dialogueLangue.show();
     }
 
     @FXML
@@ -809,6 +891,7 @@ scrollformation.getStyleClass().add("scroll-pane");
 
     @FXML
     private void loadMemberInfo(ActionEvent event) {
+        
     }
 
 }

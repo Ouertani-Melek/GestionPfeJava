@@ -15,16 +15,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane fx:id="scrollin" prefHeight="650.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.CVControllers.RemplirCvController">
+<ScrollPane fx:id="scrollin" hbarPolicy="NEVER" opacity="0.95" prefHeight="650.0" prefWidth="820.0" style="-fx-background-color: #000000;" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.CVControllers.RemplirCvController">
    <content>
-      <AnchorPane id="AnchorPane" fx:id="remplir" prefHeight="650.0" prefWidth="820.0" style="-fx-background-color: #fff;" styleClass="mainFxmlClass">
+      <AnchorPane id="AnchorPane" fx:id="remplir" prefHeight="650.0" prefWidth="820.0" style="-fx-background-color: #000000;" styleClass="mainFxmlClass">
           <stylesheets>
               <URL value="@remplircv.css" />
           </stylesheets>
          <children>
             <ImageView fitHeight="1150.0" fitWidth="820.0" opacity="0.76" pickOnBounds="true">
                <image>
-                  <Image url="@../images/backgrounds/cource-info_1.jpg" />
+                  <Image url="@../images/backgrounds/cource-info.jpg" />
                </image>
             </ImageView>
             <Text fill="#da5436" layoutX="219.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remplissage de Votre CV" textAlignment="CENTER" underline="true" wrappingWidth="362.13671875" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="218.86328125">
@@ -47,7 +47,7 @@
                   <Font name="Montserrat-Bold" size="17.0" />
                </font>
             </Text>
-            <JFXComboBox fx:id="niveau" focusColor="#9eca51" labelFloat="true" layoutX="428.0" layoutY="360.0" prefHeight="35.0" prefWidth="219.0" promptText="Niveau" style="-fx-background-color: #ffff;">
+            <JFXComboBox fx:id="niveau" focusColor="#9eca51" labelFloat="true" layoutX="428.0" layoutY="353.0" prefHeight="42.0" prefWidth="219.0" promptText="Niveau" style="-fx-background-color: #ffff;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXComboBox>

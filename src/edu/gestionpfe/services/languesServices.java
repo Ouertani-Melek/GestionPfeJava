@@ -44,6 +44,23 @@ public class languesServices {
              }
 
     }
+    public void ajoutLangueUnique(Langues l) throws SQLException
+    {
+        Connection connection = ConnectionToDataBase.getInstance().getConnection();
+             
+             String sql = "INSERT INTO langues"
+                     + "(idcv,langue,niveau) VALUES"
+                     + "(?,?,?)";
+              PreparedStatement pst = connection.prepareStatement(sql);
+                pst.setInt(1, l.getIdCv());
+                pst.setString(2, l.getLangue());
+                pst.setString(3, l.getNiveau());
+
+                pst.execute();
+    
+    
+    
+    }    
     public List<Langues> AfficherLangue(int id) {
          List<Langues> langue=new ArrayList<>();
          

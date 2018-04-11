@@ -15,6 +15,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +25,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.Tooltip;
@@ -55,6 +58,7 @@ public class ListDesDemandesController implements Initializable {
     private String concatinatedTechs = "";
      public  static AnchorPane myAnchorP;
       public static int idU;
+      public static int idOffreChibani;
    public static int idDemande;
    public static int idOffrePourEntretien;
     @FXML
@@ -149,6 +153,7 @@ public class ListDesDemandesController implements Initializable {
                         cD.setLayoutX(20);
                         cD.setLayoutY(30);
                        idU=o.getIdUser();
+                       idOffreChibani=o.getIdOffre();
                        idDemande=o.getId();
                        idOffrePourEntretien=o.getIdOffre();
                      
@@ -303,10 +308,21 @@ public class ListDesDemandesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        DemandesServices dem = new DemandesServices();
+                 int lon=dem.findDeadOffre().size();
+                        
+                    if(lon>=1){
+                    Alert alert = new Alert(Alert.AlertType.WARNING, "Vous Avez des Offres 'DEAD'"+dem.findDeadOffre().toString(), ButtonType.OK);
+                                        alert.initStyle(StageStyle.DECORATED);
+                                        
+                                        Optional<ButtonType> result = alert.showAndWait();
+                                        if (result.get() == ButtonType.OK) {
+                 }
+                    }
             
               myAnchorP=myAnchor;
               
-        DemandesServices dem = new DemandesServices();
+       
         List<Demandes> ses=new ArrayList<>();
         ses=dem.AfficherDemande();
         ses.stream().forEach(d->{
