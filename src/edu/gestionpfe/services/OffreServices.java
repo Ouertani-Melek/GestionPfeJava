@@ -79,6 +79,30 @@ public class OffreServices {
             return offres;
         }
     }
+    public static List<Offre> selectOffresFalse() throws SQLException {
+        ResultSet resultSet = null;
+        Connection connection = ConnectionToDataBase.getInstance().getConnection();
+        PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM offre where etat = ?");
+        pstmt.setBoolean(1, false);
+        List<Offre> offres = new ArrayList<>();
+        resultSet = pstmt.executeQuery();
+        if (resultSet == null) {
+            return offres;
+        } else {
+            while (resultSet.next()) {
+                Offre offre = new Offre();
+                offre.setTitre(resultSet.getString("titre"));
+                offre.setDateCreation(resultSet.getDate("dateCreation"));
+                offre.setId(resultSet.getInt("id"));
+                offre.setEtat(resultSet.getBoolean("etat"));
+                offre.setIdUser(resultSet.getInt("iduser"));
+                offre.setDescription(resultSet.getString("description"));
+                offre.setNbr_demandes(resultSet.getInt("nbr_demandes"));
+                offres.add(offre);
+            }
+            return offres;
+        }
+    }
 
     public static List<Offre> selectConnectedUserOffres() throws SQLException {
         ResultSet resultSet = null;
@@ -128,6 +152,17 @@ public class OffreServices {
             }
             return o;
         }
+    }
+
+    public static void setTrue(int id) throws SQLException {
+       
+        Connection connection = ConnectionToDataBase.getInstance().getConnection();
+        PreparedStatement pstmt = connection.prepareStatement("UPDATE offre SET etat = ? where id = ?");
+        pstmt.setBoolean(1, true);
+        pstmt.setInt(1, id);
+        
+         pstmt.executeUpdate();
+        
     }
 
     public static void insertOffre(List<String> techs, String titre, String desc, int duree, int nbrDemande) throws SQLException {

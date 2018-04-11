@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,17 +30,17 @@ import javafx.util.Duration;
  *
  * @author yahia
  */
-public class AdminIndexController  implements Initializable{
+public class AdminIndexController implements Initializable {
 
     @FXML
     private AnchorPane root;
-    
+
     public static AnchorPane rootP;
     @FXML
     private JFXButton AfficherAccepte;
     @FXML
     private AnchorPane container;
-    public  static  AnchorPane containerP;
+    public static AnchorPane containerP;
     @FXML
     private Text label;
     @FXML
@@ -47,27 +48,29 @@ public class AdminIndexController  implements Initializable{
     public static AnchorPane pane;
     @FXML
     private JFXButton quit;
+    @FXML
+    private JFXButton offreAff;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //TODO
         if (!NaivgationDrawer.isSplashLoaded) {
-                loadSplashScreen();
-            }
-            label.setText("Connecté en tant que Administrateur" );
-            label.setStyle("-fx-text-inner-color: #9eca51");
-            rootP=root;
-            pane=container;
-           
-        
+            loadSplashScreen();
+        }
+        label.setText("Connecté en tant que Administrateur");
+        label.setStyle("-fx-text-inner-color: #9eca51");
+        rootP = root;
+        pane = container;
+
     }
-     private void loadSplashScreen() {
+
+    private void loadSplashScreen() {
         try {
             NaivgationDrawer.isSplashLoaded = true;
 
             StackPane pane = FXMLLoader.load(getClass().getResource(("/edu/gestionpfe/views/Default/SplashFXML.fxml")));
             root.getChildren().setAll(pane);
-                    
+
             FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), pane);
             fadeIn.setFromValue(0);
             fadeIn.setToValue(1);
@@ -97,13 +100,13 @@ public class AdminIndexController  implements Initializable{
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        
+
     }
 
     @FXML
     private void encadrement(ActionEvent event) throws IOException {
-        Node node=FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/stages/liststages.fxml"));
-                                       container.getChildren().setAll(node);
+        Node node = FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/stages/liststages.fxml"));
+        container.getChildren().setAll(node);
     }
 
     @FXML
@@ -112,21 +115,26 @@ public class AdminIndexController  implements Initializable{
     }
 
     @FXML
+    private void afficherO(ActionEvent event) throws IOException {
+        Node node = FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Offres/OffreAdmin.fxml"));
+        pane.getChildren().setAll(node);
+    }
+
+    @FXML
     private void allsoutenance(ActionEvent event) throws IOException {
-       try {
+        try {
 //                   FXMLLoader root = new FXMLLoader(getClass().getResource("/edu/gestionpfe/views/Soutenance/affectationPresident.fxml"));
 //                    AnchorPane x = root.load();
 //                    AffectationPresidentController c = root.getController();
 //
 //                    containerP.getChildren().clear();
 //                    containerP.getChildren().add((Node) x);
- Node node=FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Soutenance/affectationPresident.fxml"));
-                                       pane.getChildren().setAll(node);
-                } catch (IOException ex) {
-                    Logger.getLogger(SoutenanceController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        
-        
+            Node node = FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Soutenance/affectationPresident.fxml"));
+            pane.getChildren().setAll(node);
+        } catch (IOException ex) {
+            Logger.getLogger(SoutenanceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-    
+
 }

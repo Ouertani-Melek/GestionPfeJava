@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package edu.gestionpfe.controllers.DemandeControllers;
+
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -88,65 +89,55 @@ public class ListeDesAccepteController implements Initializable {
     public static int idU;
     public static int idDemande;
     public static int idOffrePourEntretien;
-    
-private String nickname;
-   
+
+    private String nickname;
+
     private void afficherDem(Demandes o) throws Exception {
-        
-        DemandesPDF PDFAccepte=new DemandesPDF();
-            DemandesServices dms=new DemandesServices();
+
+        DemandesPDF PDFAccepte = new DemandesPDF();
+        DemandesServices dms = new DemandesServices();
         try {
             Pane p = new Pane();
-              if(!o.isEtatEntretien())
-              { 
-                  DemandeNbr++;
-              
-              }
+            if (!o.isEtatEntretien()) {
+                DemandeNbr++;
+
+            }
             ImageView img;
             User usr = UserServices.selectUserById(o.getIdUser());
             img = UserServices.getUserImage(usr);
-            
-          
-            ImageView SkypeAppel=new ImageView("/edu/gestionpfe/views/images/skype.png");
+
+            ImageView SkypeAppel = new ImageView("/edu/gestionpfe/views/images/skype.png");
             SkypeAppel.setFitHeight(16);
             SkypeAppel.setFitWidth(16);
             SkypeAppel.setLayoutX(10);
             SkypeAppel.setLayoutY(10);
-            SkypeAppel.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event)->{
-            
-            
+            SkypeAppel.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+
                 try {
                     MakeCall();
-                     nickname=String.valueOf(usr.getNumTel());
+                    nickname = String.valueOf(usr.getNumTel());
                 } catch (Exception ex) {
                     Logger.getLogger(ListeDesAccepteController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            
-            
-            
+
             });
-            
-            
-            
+
             p.setPrefSize(90, 90);
-           //buttons
+            //buttons
             Button b = new Button();
-            Button Delet=new Button("Refuser");
+            Button Delet = new Button("Refuser");
             b.getStyleClass().add("button");
             Delet.getStyleClass().add("button");
-            
+
             b.setLayoutX(30);
             b.setLayoutY(100);
-            
+
             Delet.setLayoutX(25);
             Delet.setLayoutY(70);
-            
-            
-            
-             b.setVisible(false);
+
+            b.setVisible(false);
             Delet.setVisible(false);
-            
-            
+
             //end button
             //titre et user data
             Label l = new Label(usr.getPrenom() + " " + usr.getNom());
@@ -160,160 +151,153 @@ private String nickname;
             titreOf.setLayoutX(15);
             titreOf.setLayoutY(150);
             titreOf.setVisible(true);
-            Tooltip t=new Tooltip();
+            Tooltip t = new Tooltip();
             t.setText(o.gettitreOffrePrDemande());
-            
+
             if (o.gettitreOffrePrDemande().length() > 12) {
                 titreOf.setText(o.gettitreOffrePrDemande().substring(0, 12) + "..");
-               
+
                 Tooltip.install(titreOf, t);
             } else {
                 titreOf.setText(o.gettitreOffrePrDemande());
                 Tooltip.install(titreOf, t);
             }
 
-           
             Image image = img.getImage();
             Circle c = new Circle(70, 70, 70);
             c.setFill(new ImagePattern(image));
             //end user data
 
-
-            
-             if(!o.isEtatEntretien()){
+            if (!o.isEtatEntretien()) {
                 Delet.setVisible(true);
                 b.setText("valider");
                 b.setVisible(true);
-            
-            b.setOnAction((ActionEvent e) -> {
-                Platform.runLater(() -> {
-                    try {
-                        //action  accepter le candidat 
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Etes Vous sure d'accepter Ce Candidat pour vous rejoindre dans l'offre " + o.gettitreOffrePrDemande() + "?", ButtonType.OK, ButtonType.NO);
-                        alert.initStyle(StageStyle.DECORATED);
 
-                        Optional<ButtonType> result = alert.showAndWait();
-                        if (result.get() == ButtonType.OK) {
-                            //newsx.ajouterEntretien(o.getId(),dateentre.getValue());
-                            DemandesServices deman = new DemandesServices();
-                            deman.AccepterEntretien(o.getId());
-                            TrayNotification tray = new TrayNotification();
-                            tray.setTitle("Gestion PFE Acceptation Candidat");
-                            tray.setMessage("Entretien Validé avec succés !");
-                            tray.setNotificationType(NotificationType.SUCCESS);
-                            tray.setAnimationType(AnimationType.SLIDE);
-                            tray.showAndDismiss(Duration.seconds(20));
-                            b.setText("PDF");
-                            l.setVisible(true);
-                            Delet.setVisible(false);
-                            b.setOnAction((ActionEvent a) -> {
-                                Platform.runLater(() -> {
-                                    try {
-                                        PDFAccepte.setNomEtudiant(usr.getNom()+" "+usr.getPrenom());
-                                        PDFAccepte.setAdresseEtudiant("Tunisie"+","+usr.getVille()+","+usr.getRue());
-                                        PDFAccepte.setEtatD("Accepté(e)");
-                                        PDFAccepte.setEtatE("Accepté(e)");
-                                        PDFAccepte.setEmailEtu(usr.getEmail());
-                                        PDFAccepte.setNumTelEtudiant("+216 " + usr.getNumTel());
-                                        //PDFAccepte.setDateDemande((o.getDateDemande()).ge);
-                                        //PDFAccepte.setDateEntretien(Date.valueOf((o.getDateEntretien()).toLocalDate()));
-                                        PDFAccepte.setOffreDemande(t.getText());
-                                        PDFAccepte.setMatriculeDemande(o.getId());
-                                        User EntrepriseUSer=new User();    
-                                        EntrepriseUSer= dms.selectPdfEntreprise(o.getIdOffre());
-                                        PDFAccepte.setAdresseEntreprise("Tunisie,"+EntrepriseUSer.getVille()+","+EntrepriseUSer.getRue()+","+EntrepriseUSer.getCodePostal());
-                                        PDFAccepte.setImageEntre(EntrepriseUSer.getImage());
-                                        PDFAccepte.setImageUSr(usr.getImage());
-                                        PDFAccepte.setEmailEntreprise(EntrepriseUSer.getEmail());
-                                        PDFAccepte.setNomEntreprise(EntrepriseUSer.getUsername());
-                                        PDFAccepte.setNumTelEntreprise("+216 "+EntrepriseUSer.getNumTel());
-                                        PDFAccepte.setIdEntreprise(EntrepriseUSer.getId());
-                                        PDFAccepte.setIdEtudiant(o.getIdUser());
-                                        
-                                        
-           
-                                        AnchorPane node = (AnchorPane) FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Demandes/FXMLDocument.fxml"));
-                                        Stage dia = new Stage();
+                b.setOnAction((ActionEvent e) -> {
+                    Platform.runLater(() -> {
+                        try {
+                            //action  accepter le candidat 
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Etes Vous sure d'accepter Ce Candidat pour vous rejoindre dans l'offre " + o.gettitreOffrePrDemande() + "?", ButtonType.OK, ButtonType.NO);
+                            alert.initStyle(StageStyle.DECORATED);
 
-                                        dia.initOwner((Stage) mAnchorAccepte.getScene().getWindow());
-                                        dia.initModality(Modality.APPLICATION_MODAL);
-                                        dia.initStyle(StageStyle.TRANSPARENT);
-                                        Scene scene = new Scene(node);
-                                        dia.setScene(scene);
+                            Optional<ButtonType> result = alert.showAndWait();
+                            if (result.get() == ButtonType.OK) {
+                                //newsx.ajouterEntretien(o.getId(),dateentre.getValue());
+                                DemandesServices deman = new DemandesServices();
+                                deman.AccepterEntretien(o.getId());
+                                TrayNotification tray = new TrayNotification();
+                                tray.setTitle("Gestion PFE Acceptation Candidat");
+                                tray.setMessage("Entretien Validé avec succés !");
+                                tray.setNotificationType(NotificationType.SUCCESS);
+                                tray.setAnimationType(AnimationType.SLIDE);
+                                tray.showAndDismiss(Duration.seconds(20));
+                                b.setText("PDF");
+                                l.setVisible(true);
+                                Delet.setVisible(false);
+                                b.setOnAction((ActionEvent a) -> {
+                                    Platform.runLater(() -> {
+                                        try {
+                                            PDFAccepte.setNomEtudiant(usr.getNom() + " " + usr.getPrenom());
+                                            PDFAccepte.setAdresseEtudiant("Tunisie" + "," + usr.getVille() + "," + usr.getRue());
+                                            PDFAccepte.setEtatD("Accepté(e)");
+                                            PDFAccepte.setEtatE("Accepté(e)");
+                                            PDFAccepte.setEmailEtu(usr.getEmail());
+                                            PDFAccepte.setNumTelEtudiant("+216 " + usr.getNumTel());
+                                            //PDFAccepte.setDateDemande((o.getDateDemande()).ge);
+                                            //PDFAccepte.setDateEntretien(Date.valueOf((o.getDateEntretien()).toLocalDate()));
+                                            PDFAccepte.setOffreDemande(t.getText());
+                                            PDFAccepte.setMatriculeDemande(o.getId());
+                                            User EntrepriseUSer = new User();
+                                            EntrepriseUSer = dms.selectPdfEntreprise(o.getIdOffre());
+                                            PDFAccepte.setAdresseEntreprise("Tunisie," + EntrepriseUSer.getVille() + "," + EntrepriseUSer.getRue() + "," + EntrepriseUSer.getCodePostal());
+                                            PDFAccepte.setImageEntre(EntrepriseUSer.getImage());
+                                            PDFAccepte.setImageUSr(usr.getImage());
+                                            PDFAccepte.setEmailEntreprise(EntrepriseUSer.getEmail());
+                                            PDFAccepte.setNomEntreprise(EntrepriseUSer.getUsername());
+                                            PDFAccepte.setNumTelEntreprise("+216 " + EntrepriseUSer.getNumTel());
+                                            PDFAccepte.setIdEntreprise(EntrepriseUSer.getId());
+                                            PDFAccepte.setIdEtudiant(o.getIdUser());
 
-                                        dia.show();
+                                            AnchorPane node = (AnchorPane) FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Demandes/FXMLDocument.fxml"));
+                                            Stage dia = new Stage();
 
-                                        //close this stage 
-                                        PauseTransition delay = new PauseTransition(Duration.seconds(12));
-                                        delay.setOnFinished(event -> dia.close());
-                                        delay.play();
-                                       // System.out.println("Affichage user"+PDFAccepte.toString());
-                                        GeneratePDFQRCode(PDFAccepte);
-                                        b.setDisable(true);
-                                        TrayNotification tra = new TrayNotification();
+                                            dia.initOwner((Stage) mAnchorAccepte.getScene().getWindow());
+                                            dia.initModality(Modality.APPLICATION_MODAL);
+                                            dia.initStyle(StageStyle.TRANSPARENT);
+                                            Scene scene = new Scene(node);
+                                            dia.setScene(scene);
+
+                                            dia.show();
+
+                                            //close this stage 
+                                            PauseTransition delay = new PauseTransition(Duration.seconds(12));
+                                            delay.setOnFinished(event -> dia.close());
+                                            delay.play();
+                                            // System.out.println("Affichage user"+PDFAccepte.toString());
+                                            GeneratePDFQRCode(PDFAccepte);
+                                            b.setDisable(true);
+                                            TrayNotification tra = new TrayNotification();
                                             tra.setTitle("Gestion PFE Generation Confirmation");
                                             tra.setMessage("En cours.. ");
                                             tra.setNotificationType(NotificationType.INFORMATION);
                                             tra.setAnimationType(AnimationType.SLIDE);
                                             tra.showAndDismiss(Duration.seconds(11));
 
-                                    } catch (IOException ex) {
-                                        Logger.getLogger(ListeDesAccepteController.class.getName()).log(Level.SEVERE, null, ex);
-                                    } catch (SQLException ex) {
-                                        Logger.getLogger(ListeDesAccepteController.class.getName()).log(Level.SEVERE, null, ex);
-                                    } catch (Exception ex) {
-                                        Logger.getLogger(ListeDesAccepteController.class.getName()).log(Level.SEVERE, null, ex);
-                                    } 
+                                        } catch (IOException ex) {
+                                            Logger.getLogger(ListeDesAccepteController.class.getName()).log(Level.SEVERE, null, ex);
+                                        } catch (SQLException ex) {
+                                            Logger.getLogger(ListeDesAccepteController.class.getName()).log(Level.SEVERE, null, ex);
+                                        } catch (Exception ex) {
+                                            Logger.getLogger(ListeDesAccepteController.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+
+                                    });
 
                                 });
 
-                            });
+                            }
 
+                        } catch (Exception ex) {
+                            Logger.getLogger(ListDesDemandesController.class.getName()).log(Level.SEVERE, null, ex);
                         }
-
-                    } catch (Exception ex) {
-                        Logger.getLogger(ListDesDemandesController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-               });
-            });
-            l.setVisible(true);
-            Delet.setOnAction((ActionEvent d) -> {
-               Platform.runLater(() -> {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Etes Vous sure de refuser Ce Candidat pour vous rejoindre dans l'offre " + o.gettitreOffrePrDemande() + "?", ButtonType.OK, ButtonType.NO);
+                    });
+                });
+                l.setVisible(true);
+                Delet.setOnAction((ActionEvent d) -> {
+                    Platform.runLater(() -> {
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Etes Vous sure de refuser Ce Candidat pour vous rejoindre dans l'offre " + o.gettitreOffrePrDemande() + "?", ButtonType.OK, ButtonType.NO);
                         alert.initStyle(StageStyle.DECORATED);
 
                         Optional<ButtonType> result = alert.showAndWait();
                         if (result.get() == ButtonType.OK) {
-                            
-                       
-                    try {
-                        Delet.setText("Refusé");
-                        Delet.setDisable(true);
-                        b.setVisible(false);
-                        dms.RefusCandidat(o.getId());
-                        TrayNotification tray = new TrayNotification();
-                        tray.setTitle("Gestion PFE Refus Candidat");
-                        tray.setMessage("Operation terminée avec succées!");
-                        tray.setNotificationType(NotificationType.INFORMATION);
-                        tray.setAnimationType(AnimationType.SLIDE);
-                        tray.showAndDismiss(Duration.seconds(20));
-                    } catch (SQLException ex) {
-                        Logger.getLogger(ListeDesAccepteController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+
+                            try {
+                                Delet.setText("Refusé");
+                                Delet.setDisable(true);
+                                b.setVisible(false);
+                                dms.RefusCandidat(o.getId());
+                                TrayNotification tray = new TrayNotification();
+                                tray.setTitle("Gestion PFE Refus Candidat");
+                                tray.setMessage("Operation terminée avec succées!");
+                                tray.setNotificationType(NotificationType.INFORMATION);
+                                tray.setAnimationType(AnimationType.SLIDE);
+                                tray.showAndDismiss(Duration.seconds(20));
+                            } catch (SQLException ex) {
+                                Logger.getLogger(ListeDesAccepteController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
-               
-               
-               });
-            });
+
+                    });
+                });
             }
-             
+
             p.getChildren().add(c);
             p.getChildren().add(SkypeAppel);
             p.getChildren().add(Delet);
             p.getChildren().add(b);
             p.getChildren().add(l);
             p.getChildren().add(titreOf);
-            
+
             if (DemandeNbr == 1) {
                 p.setLayoutX(layoutX);
                 p.setLayoutY(layoutY + 30);
@@ -332,12 +316,11 @@ private String nickname;
                 layoutY += 180;
                 layoutX = 10;
             }
-            if(!o.isEtatEntretien())
-            { mAnchorAccepte.getChildren().add(p);
-            
+            if (!o.isEtatEntretien()) {
+                mAnchorAccepte.getChildren().add(p);
+
             }
-           
-            
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -364,31 +347,27 @@ private String nickname;
             }
         });
     }
-    public void GeneratePDFQRCode(DemandesPDF Yalla) throws Exception
-    {
-    
+
+    public void GeneratePDFQRCode(DemandesPDF Yalla) throws Exception {
+
         try {
-            User usrt=new User();
+            User usrt = new User();
             usrt.setId(Yalla.getIdEtudiant());
             usrt.setImage(Yalla.getImageUSr());
-            
-           
-          
-           
-           
-            
-         Image image =  UserServices.getUserImage(usrt).getImage();
 
-if(usrt.getImage().contains(" "))
-        usrt.setImage(usrt.getImage().replaceAll(" ","%20"));
-        String imageUrl = "http://localhost/gestionpfe/web/uploads/user/" + usrt.getImage();
+            Image image = UserServices.getUserImage(usrt).getImage();
+
+            if (usrt.getImage().contains(" ")) {
+                usrt.setImage(usrt.getImage().replaceAll(" ", "%20"));
+            }
+            String imageUrl = "http://localhost/gestionpfe/web/uploads/user/" + usrt.getImage();
 
             com.itextpdf.text.Document my_pdf_report = new com.itextpdf.text.Document();
-            PdfWriter.getInstance(my_pdf_report, 
-                    new FileOutputStream(new File("C:\\Users\\yahia\\Documents\\NetBeansProjects\\GestionPfeJava\\src\\edu\\gestionpfe\\views\\Demandes\\ALLPDFS\\"+Yalla.getNumTelEtudiant()+".pdf")));
+            PdfWriter.getInstance(my_pdf_report,
+                    new FileOutputStream(new File("C:\\Users\\yahia\\Documents\\NetBeansProjects\\GestionPfeJava\\src\\edu\\gestionpfe\\views\\Demandes\\ALLPDFS\\" + Yalla.getNumTelEtudiant() + ".pdf")));
             my_pdf_report.open();
-          
- com.itextpdf.text.Font titleFont = FontFactory.getFont(FontFactory.COURIER_BOLD, 14, BaseColor.RED);
+
+            com.itextpdf.text.Font titleFont = FontFactory.getFont(FontFactory.COURIER_BOLD, 14, BaseColor.RED);
             Paragraph docTitle = new Paragraph("Lettre de Confirmation", titleFont);
                 docTitle.setAlignment(Element.ALIGN_CENTER);
             
@@ -415,24 +394,22 @@ if(usrt.getImage().contains(" "))
                 my_pdf_report.add(Etudiant);
                
             titleFont.isUnderlined();
-           
+
             docTitle.setSpacingAfter(10);
-            
+
             my_pdf_report.add(docTitle);
-                
 
             //we have 2 columns in our table
             PdfPTable my_report_table = new PdfPTable(2);
-           
-            
+
             my_report_table.setWidthPercentage(105);
             my_report_table.setSpacingBefore(50f);
             my_report_table.setSpacingAfter(30f);
             PdfPCell table_cell;
             PdfPCell table_cell2;
-            
+
             table_cell = new PdfPCell(new Phrase("Details Demande", titleFont));
-            
+
             table_cell.setFixedHeight(30);
             table_cell.setBackgroundColor(BaseColor.DARK_GRAY);
             table_cell2 = new PdfPCell(new Phrase("Etat ", titleFont));
@@ -440,63 +417,49 @@ if(usrt.getImage().contains(" "))
             my_report_table.setHeaderRows(1);
             my_report_table.addCell(table_cell);
             my_report_table.addCell(table_cell2);
-            
-            
-            
+
             my_report_table.addCell("Demande");
             my_report_table.addCell("Accepté(e)");
-            
-            
+
             my_report_table.addCell("Entretien");
             my_report_table.addCell("Accepté(e)");
-            
-            Paragraph date=new Paragraph();
+
+            Paragraph date = new Paragraph();
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	Date date2 = new Date();
-            date.add(dateFormat.format(date2) +"\n \n" +"Merci pour la qualité de Vos etudiants!");
-                date.setAlignment(Element.ALIGN_BOTTOM);
-            
-            
-            
-            
-            
+            Date date2 = new Date();
+            date.add(dateFormat.format(date2) + "\n \n" + "Merci pour la qualité de Vos etudiants!");
+            date.setAlignment(Element.ALIGN_BOTTOM);
+
             my_pdf_report.add(my_report_table);
             my_pdf_report.add(date);
-            
+
             //Qr Code Generation 
-            
- BarcodeQRCode barcodeQRCode = new BarcodeQRCode(Yalla.getNomEtudiant()+"//"+"mat Dem"+Yalla.getMatriculeDemande()+
-         "//"+Yalla.getNomEntreprise()+"//stage :"+Yalla.getOffreDemande()+"//MatEtu*Matentreprise"+Yalla.getIdEtudiant()+"*"+Yalla.getIdEntreprise(), 1150, 1150, null);
-     com.itextpdf.text.Image  codeQrImage = barcodeQRCode.getImage();
-        codeQrImage.scaleAbsolute(100, 100);
-        
-        codeQrImage.setAlignment(Element.ALIGN_RIGHT);
-            Paragraph sign= new Paragraph("SIGNATURE");
+            BarcodeQRCode barcodeQRCode = new BarcodeQRCode(Yalla.getNomEtudiant() + "//" + "mat Dem" + Yalla.getMatriculeDemande()
+                    + "//" + Yalla.getNomEntreprise() + "//stage :" + Yalla.getOffreDemande() + "//MatEtu*Matentreprise" + Yalla.getIdEtudiant() + "*" + Yalla.getIdEntreprise(), 1150, 1150, null);
+            com.itextpdf.text.Image codeQrImage = barcodeQRCode.getImage();
+            codeQrImage.scaleAbsolute(100, 100);
+
+            codeQrImage.setAlignment(Element.ALIGN_RIGHT);
+            Paragraph sign = new Paragraph("SIGNATURE");
             sign.setAlignment(Element.ALIGN_RIGHT);
             my_pdf_report.add(sign);
-        my_pdf_report.add(codeQrImage);
-
-                 
-                    
-                
+            my_pdf_report.add(codeQrImage);
 
 //Fin Qr Code
             my_pdf_report.close();
-            
+
         } catch (DocumentException | FileNotFoundException ex) {
             Logger.getLogger(ListeDesAccepteController.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
-        
 
-    
     }
-    private void MakeCall() throws Exception{
+
+    private void MakeCall() throws Exception {
         try {
-          Skype.call(nickname);
-      } catch (SkypeException e) {
-          e.printStackTrace();
-      }
+            Skype.call(nickname);
+        } catch (SkypeException e) {
+            e.printStackTrace();
+        }
         System.out.println("skype");
     }
 

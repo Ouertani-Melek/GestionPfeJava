@@ -20,9 +20,14 @@
                         <FontAwesomeIconView glyphName="USER" size="25" />
                      </graphic>
                   </JFXButton>
-                  <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="400.0" prefWidth="160.0" styleClass="toolbar-button" text="Mes Offres" textAlignment="CENTER">
+                  <JFXButton fx:id="offreAff" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#afficherO" prefHeight="400.0" prefWidth="160.0" styleClass="toolbar-button" text="Offres à valider" textAlignment="CENTER">
                      <graphic>
                         <FontAwesomeIconView glyphName="BOOK" size="25" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="afficheD" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="400.0" prefWidth="160.0" styleClass="toolbar-button" text="Demandes" textAlignment="CENTER">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="TABLE" size="25" />
                      </graphic>
                   </JFXButton>
                   <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="81.0" mnemonicParsing="false" onAction="#allsoutenance" prefHeight="400.0" prefWidth="160.0" styleClass="toolbar-button" text="Soutenances" textAlignment="CENTER">
