@@ -8,6 +8,7 @@ import edu.gestionpfe.models.Technologie;
 import edu.gestionpfe.models.User;
 import edu.gestionpfe.services.CompetencesTechniquesServices;
 import edu.gestionpfe.services.CvServices;
+import edu.gestionpfe.services.DemandesServices;
 import edu.gestionpfe.services.TechnologiesServices;
 import edu.gestionpfe.services.UserServices;
 import eu.hansolo.medusa.Fonts;
@@ -24,6 +25,8 @@ import javafx.stage.Stage;
 
 import java.util.Locale;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
@@ -32,12 +35,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.util.Duration;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * Created by hansolo on 02.02.16.
  */
 public class Main extends Application {
-
+    
     private static final Random RND = new Random();
     private static int noOfNodes = 0;
     private Gauge gauge;
@@ -110,11 +117,49 @@ public class Main extends Application {
         postuler.setLayoutY(370);
         postuler.setPrefSize(200, 50);
         postuler.setStyle("-fx-background-color: #00FF00");
+        DemandesServices demandess=new DemandesServices();
+        demandess.allDemandesForUser(ConnectionController.usr.getId()).stream().forEach(e->{
+        
+            try {
+                if(e==o.getId()|| CvServices.findCv().getId()==0)
+                {
+                    postuler.setDisable(true);
+                     TrayNotification tray = new TrayNotification();
+                            tray.setTitle("Gestion PFE Posutler dans un offre");
+                            tray.setMessage("Vous devez remplir votre Cv  ou vous a avez deja postuler dans cet offre!");
+                            tray.setNotificationType(NotificationType.WARNING);
+                            tray.setAnimationType(AnimationType.SLIDE);
+                            tray.showAndDismiss(Duration.seconds(5));
+                            
+                }
+                else
+                    postuler.setDisable(false);
+            } catch (SQLException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         postuler.setOnAction((ActionEvent d) -> {
             Platform.runLater(() -> {
+                
+                
+                try {
+                    demandess.Postuler(ConnectionController.usr.getId(),o.getId());
+                } catch (SQLException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                postuler.setDisable(true);
+                 TrayNotification tray = new TrayNotification();
+                            tray.setTitle("Gestion PFE Posutler dans un offre");
+                            tray.setMessage("Operation Terminée avec succés !");
+                            tray.setNotificationType(NotificationType.SUCCESS);
+                            tray.setAnimationType(AnimationType.SLIDE);
+                            tray.showAndDismiss(Duration.seconds(5));
+               
 
             });
         });
+              
+        
         Label titreD = new Label();
         titreD.setText("Titre du stage : " + o.getTitre());
         titreD.setLayoutX(20);

@@ -36,8 +36,6 @@ public class AdminIndexController  implements Initializable{
     
     public static AnchorPane rootP;
     @FXML
-    private JFXButton afficheD;
-    @FXML
     private JFXButton AfficherAccepte;
     @FXML
     private AnchorPane container;

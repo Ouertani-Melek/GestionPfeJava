@@ -93,17 +93,17 @@
             </ImageView>
          </graphic>
       </Label>
-      <Label prefHeight="41.0" prefWidth="237.0" text="YAYA">
+      <Label prefHeight="41.0" prefWidth="237.0" text="CHIIBANI ASSISTANT">
          <padding>
             <Insets left="10.0" />
          </padding>
          <font>
-            <Font name="SansSerif Bold" size="16.0" />
+            <Font name="SansSerif Bold" size="14.0" />
          </font>
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../EGDownloads/Compressed/ScanningAnimation/src/images/benny.png" />
+                  <Image url="@../images/events/benny.png" />
                </image>
             </ImageView>
          </graphic>

@@ -309,16 +309,7 @@ public class ListDesDemandesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         DemandesServices dem = new DemandesServices();
-                 int lon=dem.findDeadOffre().size();
-                        
-                    if(lon>=1){
-                    Alert alert = new Alert(Alert.AlertType.WARNING, "Vous Avez des Offres 'DEAD'"+dem.findDeadOffre().toString(), ButtonType.OK);
-                                        alert.initStyle(StageStyle.DECORATED);
-                                        
-                                        Optional<ButtonType> result = alert.showAndWait();
-                                        if (result.get() == ButtonType.OK) {
-                 }
-                    }
+               
             
               myAnchorP=myAnchor;
               
@@ -336,7 +327,19 @@ public class ListDesDemandesController implements Initializable {
             }
         });
 
-
+//                int lon=dem.findDeadOffre().size();
+//                        
+//                    if(lon>=1){
+//                    Alert alert = new Alert(Alert.AlertType.WARNING, "Vous Avez des Offres non postulés"+dem.findDeadOffre().toString(), ButtonType.OK);
+//                                        alert.initStyle(StageStyle.DECORATED);
+//                                        
+//                                        Optional<ButtonType> result = alert.showAndWait();
+//                                        if (result.get() == ButtonType.OK) {
+//                 }
+//                    }
+//                    else{
+//                        System.out.println("mriguel");
+//                    }
 
     }
     ///pagination

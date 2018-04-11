@@ -87,9 +87,12 @@ public class DemandesServices {
                         demandesEntre.add(e);
                         lofrres.add(of);
                         Date today = new Date();
-                         long diff = today.getTime() - of.getDateCreation().getTime();
-                        if((diff / (1000 * 60 * 60 * 24))>60)
-                            DeadOffres.add(of);
+//                        
+//                         long diff = today.getTime() - of.getDateCreation().getTime();
+//                        if((diff / (1000 * 60 * 60 * 24))>60)
+//                        {
+//                            DeadOffres.add(of);
+//                        }
                     
                     } else {
                         lof.remove(e);
@@ -407,5 +410,35 @@ public class DemandesServices {
         return Dead;
     
     }
+
+    public void Postuler(int idUser, int idOffre) throws SQLException {
+        String req="INSERT INTO `demandes` (`idoffre`, `iduser`, `dateDemande`) VALUES (?,?,?)";
+    Connection connection = ConnectionToDataBase.getInstance().getConnection();
+       
+        PreparedStatement pst = connection.prepareStatement(req);
+        pst.setInt(1, idOffre);
+        pst.setInt(2, idUser);
+        pst.setTimestamp(3, java.sql.Timestamp.valueOf(LocalDateTime.now()));
+        pst.executeUpdate();
+        
     
+    }
+    public List<Integer> allDemandesForUser(int id) throws SQLException
+    { List<Integer> allD=new ArrayList<>();
+    
+    String req="SELECT * FROM `demandes` WHERE `iduser`=?";
+    Connection connection = ConnectionToDataBase.getInstance().getConnection();
+       
+        PreparedStatement pst = connection.prepareStatement(req);
+        pst.setInt(1,id);
+       
+        ResultSet rs=pst.executeQuery();
+        while(rs.next())
+        {
+        allD.add(rs.getInt("idoffre"));
+        }
+    
+    
+    return allD;
+    }    
 }

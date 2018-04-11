@@ -409,7 +409,7 @@ if(usrt.getImage().contains(" "))
 
     com.itextpdf.text.Image a =com.itextpdf.text.Image.getInstance(imageUrl);
     a.setAlignment(Element.ALIGN_RIGHT);
-    a.setWidthPercentage(150);
+    a.scaleAbsolute(100, 100);
                 my_pdf_report.add( a) ;
            
                 my_pdf_report.add(Etudiant);
