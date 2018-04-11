@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.AjouterOffreController">
+   <children>
+      <ScrollPane>
+         <content>
+            <AnchorPane id="AnchorPane" fx:id="myPane" prefHeight="650.0" prefWidth="820.0" styleClass="mainFxmlClass">
+               <stylesheets>
+                  <URL value="@ajouteroffre.css" />
+               </stylesheets>
+               <children>
+                  <JFXTextField fx:id="titre" layoutX="41.0" layoutY="59.0" maxWidth="332.0" minWidth="251.0" prefHeight="31.0" prefWidth="332.0" promptText="Titre de stage" />
+                  <JFXTextField fx:id="duree" layoutX="447.0" layoutY="59.0" maxWidth="332.0" minWidth="251.0" prefHeight="31.0" prefWidth="332.0" promptText="Durée de stage en mois" />
+                  <JFXTextField fx:id="nbrEtudiants" layoutX="40.0" layoutY="153.0" maxWidth="332.0" minWidth="251.0" prefHeight="31.0" prefWidth="332.0" promptText="Nombre d'étudiants demandés" />
+                  <JFXTextField fx:id="technologie" layoutX="448.0" layoutY="154.0" maxWidth="332.0" minWidth="251.0" prefHeight="31.0" prefWidth="289.0" promptText="Technologie" />
+                  <JFXTextArea fx:id="description" layoutX="41.0" layoutY="310.0" maxWidth="735.0" minWidth="682.0" prefHeight="94.0" prefWidth="735.0" promptText="Description générale" />
+                  <ImageView fx:id="plus" fitHeight="36.0" fitWidth="40.0" layoutX="738.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/plus.png" />
+                     </image>
+                  </ImageView>
+                  <Pane fx:id="techPane" layoutX="-1.0" layoutY="208.0" prefHeight="101.0" prefWidth="822.0" />
+                  <JFXButton fx:id="ajouterButton" layoutX="344.0" layoutY="504.0" prefHeight="37.0" prefWidth="129.0" text="Ajouter" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
