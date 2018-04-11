@@ -30,6 +30,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import static edu.gestionpfe.controllers.ConnectionController.usr;
+import static edu.gestionpfe.controllers.UserIndexController.pane;
+import javafx.scene.Node;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 /**
@@ -162,6 +164,12 @@ public class ProfilesidebarController implements Initializable {
     @FXML
     private void exit(ActionEvent event) {
         System.exit(0);
+    }
+
+    @FXML
+    private void DemandesAccept(ActionEvent event) throws IOException {
+        Node node=FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Demandes/listdemandesaccept.fxml"));
+                                       pane.getChildren().setAll(node);
     }
 
 }
