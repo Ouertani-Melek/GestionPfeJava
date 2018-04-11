@@ -43,9 +43,9 @@ public class EtudiantDemandes {
         this.id = id;
     }
 
-    public int getIdoffre() {
-      // us = new UserServices();
-        return idoffre;
+    public String getIdoffre() {
+        UserServices us = new UserServices();
+        return us.FindTitreOffre(this.idoffre);
         
     }
     
