@@ -172,6 +172,18 @@ public class ProfilesidebarController implements Initializable {
                         }
         
         });
+        
+        b3.setOnAction((ActionEvent event) -> {
+            
+            try {
+                node = (ScrollPane) FXMLLoader.load(getClass().getResource("/edu/gestionpfe/views/Default/Offre.fxml"));
+            } catch (IOException ex) {
+                Logger.getLogger(ProfilesidebarController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                                 
+                                        containerP.getChildren().setAll(node);
+        });
+        
       
         
     }

@@ -3,10 +3,9 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<ScrollPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.OffreController">
+<ScrollPane hbarPolicy="NEVER" stylesheets="@../Demandes/Progress.css" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gestionpfe.controllers.OffreController">
    <content>
-      <AnchorPane id="AnchorPane" fx:id="myAnchor" prefHeight="650.0" prefWidth="700.0">
+      <AnchorPane id="AnchorPane" fx:id="myAnchor" prefHeight="655.0" prefWidth="705.0" stylesheets="@../Demandes/Progress.css">
     
 </AnchorPane>
    </content>

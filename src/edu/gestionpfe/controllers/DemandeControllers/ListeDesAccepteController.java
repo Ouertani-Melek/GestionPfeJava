@@ -369,26 +369,30 @@ public class ListeDesAccepteController implements Initializable {
 
             com.itextpdf.text.Font titleFont = FontFactory.getFont(FontFactory.COURIER_BOLD, 14, BaseColor.RED);
             Paragraph docTitle = new Paragraph("Lettre de Confirmation", titleFont);
-            docTitle.setAlignment(Element.ALIGN_CENTER);
+                docTitle.setAlignment(Element.ALIGN_CENTER);
+            
+                
 
-            Paragraph Etudiant = new Paragraph();
-            Etudiant.add(Yalla.getNomEtudiant() + "\n" + Yalla.getAdresseEtudiant() + "\n" + "Matricule Demande: \n" + Yalla.getMatriculeDemande() + "\n"
-                    + Yalla.getNumTelEtudiant() + "\n" + Yalla.getEmailEtu());
-            Etudiant.setAlignment(Element.ALIGN_RIGHT);
-            Paragraph Entreprise = new Paragraph();
-            Entreprise.add(Yalla.getNomEntreprise().toUpperCase() + "\n" + Yalla.getAdresseEntreprise() + "\n" + Yalla.getEmailEntreprise() + "\n"
-                    + Yalla.getNumTelEntreprise());
-            Entreprise.setAlignment(Element.ALIGN_LEFT);
+                Paragraph Etudiant=new Paragraph();
+                Etudiant.add(Yalla.getNomEtudiant()+"\n"+Yalla.getAdresseEtudiant()+"\n"+"Matricule Demande: \n"+Yalla.getMatriculeDemande()+"\n"
+                +Yalla.getNumTelEtudiant()+"\n"+Yalla.getEmailEtu());
+                Etudiant.setAlignment(Element.ALIGN_RIGHT);
+                Paragraph Entreprise=new Paragraph();
+                Entreprise.add(Yalla.getNomEntreprise().toUpperCase()+"\n"+Yalla.getAdresseEntreprise()+"\n"+Yalla.getEmailEntreprise()+"\n"
+                +Yalla.getNumTelEntreprise());
+                Entreprise.setAlignment(Element.ALIGN_LEFT);
+                
+                
+                my_pdf_report.add(Entreprise);
+                
 
-            my_pdf_report.add(Entreprise);
-
-            com.itextpdf.text.Image a = com.itextpdf.text.Image.getInstance(imageUrl);
-            a.setAlignment(Element.ALIGN_RIGHT);
-            a.setWidthPercentage(150);
-            my_pdf_report.add(a);
-
-            my_pdf_report.add(Etudiant);
-
+    com.itextpdf.text.Image a =com.itextpdf.text.Image.getInstance(imageUrl);
+    a.setAlignment(Element.ALIGN_RIGHT);
+    a.scaleAbsolute(100, 100);
+                my_pdf_report.add( a) ;
+           
+                my_pdf_report.add(Etudiant);
+               
             titleFont.isUnderlined();
 
             docTitle.setSpacingAfter(10);
